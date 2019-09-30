@@ -10,7 +10,7 @@ std::vector<std::pair<int, std::string>>ans;
 std::string input, currentWord, currentLine;
 int main ()
 {
-	freopen ("input.txt", "r", stdin);
+	freopen ("input.txt6b", "r", stdin);
 	while (std::getline (std::cin, currentLine))
 		input = input + currentLine;
 	int last = 0, ln = input.size();

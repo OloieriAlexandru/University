@@ -16,7 +16,7 @@ int convertToInt (std::string s)
 }
 int main ()
 {
-	freopen ("input.txt", "r", stdin);
+	freopen ("input6a.txt", "r", stdin);
 	std::string delimiter = ",";
 	std::getline (std::cin, input);
 	input.push_back (',');
