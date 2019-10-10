@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	echo "Trebuie sa specifici un director!";
+	exit;
+fi
+if [ ! -d $1 ]
+then
+	echo "Argumentul nu este un director!";
+	exit;
+fi
+cSources=`find $1 -maxdepth 1 -name "*.c"`;
+errorFile=$1/errors.txt;
+for source in $cSources
+do
+	base=`basename $source .c`;
+	outName=$1/$base.exe;
+	`gcc -o $outName $source 2>$errorFile`;
+done
+textFiles=`find $1 -maxdepth 1 -name "*.txt"`;
+for file in $textFiles
+do
+	echo "Continutul fisierului $file:";
+	cat $file;
+	echo -e "\n";	
+done

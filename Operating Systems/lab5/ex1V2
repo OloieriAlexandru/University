@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	read -p "Numele fisierului: " fileName;
+else
+	fileName=$1;
+fi
+nrOp=0;
+path=`pwd`;
+path=$path/$fileName;
+while [ true ] 
+do
+	read calc;
+	nr1=`echo $calc | cut -d" " -f1`;
+	op=`echo $calc | cut -d" " -f2`;
+	nr2=`echo $calc | cut -d" " -f3`;
+	if [ "$op" == "q" ]
+	then
+		break;
+	fi;
+	let nrOp++;
+	if [ "$op" == "+" ]
+	then
+		let ans=$nr1+$nr2;
+	elif [ "$op" == "-" ]
+	then
+		let ans=$nr1-$nr2;
+	elif [ "$op" == "." ]
+	then
+		ans=$(($nr1*$nr2));
+	elif [ "$op" == "/" ]
+	then
+		ans=`echo "scale=5; $nr1/$nr2" | bc -l`;
+	else
+		echo -e "Operatie incorecta\n";
+	fi
+	echo "$nrOp: $nr1 $op $nr2 = $ans" >> $path;
+done
+echo -e $nrOp >> $path;

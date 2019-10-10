@@ -1,0 +1,8 @@
+1. Deblocare: -> facut
+Programul primeste un string cu 2 parametri: string char
+Inainte de fiecare caracter pe care-l inlocuiesc sa fac blocare/deblocare
+Verificam ca in momentul in care modificam un caracter, acel caracter este intradevar ceea ce trebuie noi sa modificam
+
+2.MyCritSec #4 -> facut
+
+3.MyCritSec #1 -> facut  

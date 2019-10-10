@@ -1,0 +1,35 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	read -p "Directorul: " root;
+else
+	root=$1;
+fi
+
+if [ ! -d $root -o ! -r $root ]
+then
+	echo "Argumentul nu este director sau nu ai drept de citire!";
+	exit;
+fi
+
+function dirRec()
+{
+	local lines=0;
+	local chars=0;
+	for file in `ls $1`
+	do
+		path=$1/$file;
+		if [ -d $path ]
+		then
+			dirRec $path;	
+		elif [ -f $path ]
+		then
+			let lines=$lines+`cat $path | wc -l`;
+			let chars=$chars+`cat $path | wc -c`;
+		fi
+	done
+	echo "Folderul: $1, linii: $lines, caractere: $chars"; 
+}
+
+dirRec $root;

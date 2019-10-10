@@ -1,0 +1,2 @@
+Numarul de linii: 5
+Numarul de caractere: 431

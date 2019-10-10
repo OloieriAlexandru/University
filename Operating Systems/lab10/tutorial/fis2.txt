@@ -1,0 +1,1 @@
+Al doilea mesaj scris pe stdout, nu va aparea pe ecran, ci in fisier.

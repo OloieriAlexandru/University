@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	root=`pwd`
+else
+	root=$1;
+fi
+
+if [ ! -d $root -o ! -r $root ]
+then
+	echo "Argumentul nu este un director sau nu ai dreptde citire!\n";
+	exit;
+fi
+sageata="->";
+function recDir()
+{
+	for file in `ls $1`
+	do
+		path=$1/$file;
+		if [ -d $path ]
+		then
+			nivel=$(($2+1));
+			recDir $path $nivel;
+		else
+			arbore="";
+			for ((i=1;i<=$2;i++))
+			do
+				arbore=$arbore$sageata;
+			done
+			arbore=$arbore$file;
+			echo $arbore;
+		fi
+	done
+}
+
+recDir $root 0

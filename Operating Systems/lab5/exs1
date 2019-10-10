@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ $# -lt 3 ]
+then
+	echo "Utilizare: Director ExtensieVeche ExtensieNoua"
+	exit;
+else
+	root=$1;
+	oldE=$2;
+	newE=$3;
+fi
+
+echo "$oldE $newE";
+
+function dirRec()
+{
+	
+	for file in `ls $1`
+	do
+		path=$1/$file;
+		if [ -d $path ]
+		then
+			dirRec $path;
+		elif [[ $file=="*."$oldE ]]
+		then
+			echo $path;
+			base=`basename $file $oldE`;
+			newPath=$path/$base/$newE;
+			mv path$ $newPath;
+		fi
+	done
+}
+
+dirRec $root;

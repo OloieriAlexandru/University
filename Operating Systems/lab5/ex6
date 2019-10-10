@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]
+then
+	echo -e "Fail!";
+	exit;
+fi
+
+if [ ! -d $1 ]
+then
+	echo -e "Primul argument, $1, nu este un director!\nFail!";
+	exit;
+fi
+
+files=`find $1 -type f`
+for file in $files
+do
+	if [ -r $file -a -x $file ]
+	then
+		echo -e "Primele $2 linii din fisierul:\n$file, sunt:";
+		head -n $2 $file
+	fi
+done

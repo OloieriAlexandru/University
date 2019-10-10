@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	read -p "Numele fisierului: " fileName;
+else
+	fileName=$1;
+fi
+nrOp=0;
+path=`pwd`;
+path=$path/$fileName;
+while [ true ] 
+do
+	read -p "nr1=" nr1;
+	read -p "op=" op;
+	read -p "nr2=" nr2;
+	
+	case "$op" in
+		"+" ) ans=$(($nr1+$nr2)) ;;
+		"-" ) ans=$(($nr1-$nr2)) ;;
+		"*" ) ans=$(($nr1*$nr2)) ;;
+		"/" ) ans=`echo "scale=5; $nr1/$nr2" | bc -l` ;;
+		"q" ) break;
+	esac;
+	let nrOp++;
+	echo "$nrOp: $nr1 $op $nr2 = $ans" >> $path;
+done
+echo -e $nrOp >> $path;

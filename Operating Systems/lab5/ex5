@@ -1,0 +1,42 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+then
+	read -p "Directorul: " root;
+else
+	root=$1;
+fi
+if [ ! -d $root -o ! -r $root ]
+then
+	echo "Argumentul nu este director sau nu ai drept de citire!";
+	exit;
+fi
+
+function dirRec()
+{
+	local currDir=`echo $1 | tr "^" " "`;
+	for file in `ls "$currDir" | tr " " "^"`
+	do
+		file=`echo $file | tr "^" " "`;
+		path=$currDir/$file;
+		if [ -d "$path" ]
+		then
+			newPath=`echo "$path" | tr " " "^"`;
+			dirRec $newPath
+		fi
+		if [ -d "$path" -o ! -f "$path" ]
+		then
+			continue;
+		fi;
+		firstLine=`head -n 1 "$path"`;
+		if [ "$firstLine" == "#!/bin/bash" ]
+		then
+			echo -e "Script gasit!: $path\nComentariile din el:";
+			grep "#" $path | grep -v '$#' | grep -v '#!';
+			echo -e "\n";
+		fi
+	done
+}
+
+root=`echo $root | tr " " "^"`;
+dirRec $root;
