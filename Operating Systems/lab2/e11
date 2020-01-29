@@ -1,0 +1,1 @@
+find ~ \( -name "*.bak" -o -name "*~" \) -printf "%p\n" -delete;

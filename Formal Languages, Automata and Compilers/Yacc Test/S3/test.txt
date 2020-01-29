@@ -1,0 +1,23 @@
+/* inputul contine declaratii si apeluri de functii intr-un limbaj care contine urmatoarele tipuri de date:
+- tipul simplu int
+- tipul simplu float
+- tipul simplu char
+- tablouri pentru tipurile simple
+- Declaratiile de de functii sunt de forma function (parametri), tip : identificator;
+- numarul minim de parametri este 0, si parametrii multipli sunt separati prin ,
+- functiile trebuie declarate doar la inceputul codului
+- apelurile de functii sunt de forma id = call (parametri) : identificator; 
+- parametrii multipli sunt separati prin ,
+- parametrii de apel pot fi constante numerice, nume de variabile, operatii aritmetice de adunare, scadere, impartire sau inmultire (intre constante, identificatori sau apeluri de functii - apelurile de functii intre paranteze), apeluri de functii
+- trebuie sa existe macar o declaratie si macar un apel de functie
+*/
+
+function (int a[100], char chr, float b), int : fnc;
+function (), char:abc;
+function (float A, float B, float C, float D), int:abb;
+
+
+a = call (2, 4.17, (v = call (a): f1)):f;
+abc = call (2*a+(a = call (1,2,d):ab), b*c*(x = call ():f)):d;
+
+in = call ():abd;

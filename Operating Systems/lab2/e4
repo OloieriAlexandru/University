@@ -1,0 +1,1 @@
+sort /home/alexoloieri/cLinux/ex4lab2ToSort.txt -t: -k5 -n

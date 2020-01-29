@@ -1,0 +1,4 @@
+lex.yy.c
+run.exe
+yacc.tab.h
+yacc.tab.c

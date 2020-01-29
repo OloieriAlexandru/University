@@ -1,0 +1,45 @@
+/* inputul contine declaratii de clase intr-un limbaj care contine urmatoarele tipuri de date:
+- tipul simplu int
+- tipul simplu float
+- tipul simplu char
+- tablouri
+- clasele au segmentele public, protected si private, in aceasta ordine. Fiecare dintre segmente poate lipsi
+- Declaratiile de variabile sunt de urmatoarele forme
+	- tip identificator;
+	- tip identificator, identificator, ...;
+	- tip identificator = (constanta|identificator),...; 
+- declaratiile de functii sunt de forma tip identificator(parametri);
+	- parametrii sunt de forma tip identificator, si sunt permise functii fara parametri
+- functiile trebuie declarate in clasa
+- in corpul functiei este necesara doar instructiunea return, cu sau fara parametru.
+- functiile pot definite in clasa sau in afara ei. In afara corpului clasei, definirea functiei va fi de forma 
+nume_clasa::nume_functie(parametri){ return...;}
+*/
+
+class Example {
+	public:
+		int a1 = 13;
+		float a2[10];
+	protected:
+		char proc(int a){return 1;};
+		float p1(){return a;};
+	private:
+		int abc(float b[12], char c);
+}
+
+Example::abc(float a, int b[10]) {return;};
+
+class Test {
+	public:
+		int a1;
+		char a2[10];
+	private:
+		int abc(){return abc;};
+}
+
+protected class test2 {
+	protected:
+		float a = 12.7, b = a;
+}
+
+Abc::a(){return 13;};

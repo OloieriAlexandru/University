@@ -1,0 +1,23 @@
+%{   
+#include <stdio.h>             
+extern int yylineno;
+void yyerror(char *str) { printf("%s la linia %d\n", str, yylineno); } 
+%}
+
+%start check
+%token 
+
+%%
+
+check		: program				{ printf("Esti bun\n"); }
+		;
+
+program		:
+		;
+
+%%
+
+int main() {    
+	yyparse();
+ 	return 0;
+}

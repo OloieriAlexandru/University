@@ -1,0 +1,32 @@
+#!/bin/bash
+
+rec()
+{
+	local number=$num
+	if [ "$number" -eq 1 ]
+	then
+		rez=1;
+	else
+		let num=$num-1;
+		rec $next;
+		rez=$((number*number+rez))
+	fi
+return $rez	
+}
+
+if [ -z $1 ]
+then
+	read -p "n=" num
+else
+	num=$1
+fi
+
+if [ "$num" -lt 1 ]
+then
+	echo "Numarul trebuie sa fie mai mare sau egal cu 1"
+	exit 1
+fi
+
+oldNum=$num
+rec  $num
+echo "Rezultatul calculului pentru n=$oldNum este $rez"

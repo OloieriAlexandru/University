@@ -1,0 +1,33 @@
+#!/bin/bash
+
+sum=0;
+if [ ! -v $1 ]
+then
+{
+	n=$1;
+	sunt=$(($#-1));
+	echo $sunt;
+	for ((i=1;i<=sunt;i++))
+	do
+		shift 1;
+		x=$1;
+		sum=$(($sum+$x));
+	done
+	sunt=$(($sunt+1))
+	for ((i=sunt;i<=n;i++))
+	do
+		read x;
+		sum=$(($sum+$x));
+	done
+}
+else
+        read -p "n=" n;
+	for ((i=1;i<=n;i++))
+	do
+		read x;
+		sum=$(($sum+$x))
+	done
+fi
+
+ans=$(($sum/$n));
+echo "Media aritmetica a celor $n numere este $ans";

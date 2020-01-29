@@ -1,0 +1,10 @@
+<body>
+	<item> 
+		<list>
+		       <entry>| Ceva ceva ceva |</entry>
+		</list>
+	</item>
+	<item>
+	       <entry>| Test mafiaolo |</entry>
+	</item>
+</body>

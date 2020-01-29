@@ -1,0 +1,34 @@
+def classes
+
+class A {
+   atrib: 
+      new x1, y1, z1;
+      new ob1;
+   method:
+      f1 (x, y, z); 
+      f2 (x = 5, y, x);
+      f3();    
+}
+
+class B {
+   method:
+      f1 (x, y, z); 
+      f2 (x = 5, y, x=12);
+      f3 ();    
+}
+
+class C {
+    atrib: 
+      new x1, y1, z1;
+      new ob1;  
+}
+
+end def classes
+
+main
+
+invoke A.f1;
+eval A.x1; 
+invoke A.f2;
+
+end main

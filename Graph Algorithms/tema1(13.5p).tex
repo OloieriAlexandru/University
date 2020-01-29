@@ -1,0 +1,245 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage[noend]{algpseudocode}
+\usepackage{amssymb}
+\usepackage{enumerate}
+
+\title{ALGORITMICA GRAFURILOR \\
+		Tema 1}
+\author{Daniș Ciprian\\
+		Oloieri Alexandru \\
+		Anul II, Grupa A2}
+\date{8 noiembrie 2019}
+
+\begin{document}
+	
+\maketitle
+	
+\section{Problema I}
+
+\subsection{(a)}
+
+"$\Leftarrow$":  $G$ nu are punte $\Rightarrow \forall e \in E(G), G-e$ este conex $\Rightarrow G-e$ este $k$-muchie-conex, $k\geq2$.
+Aplicăm DFS($G,\ x_1$) $\Rightarrow$ ordinea $x_1,x_2,\ldots,x_n$. Muchiile traversate se orientează astfel: $x_ix_j,\ i<j$, iar muchiile netraversate(sau de întoarcere) se vor orienta în felul următor: $x_hx_k,\ h>k$ ($x_k$ se află pe drumul de la $x_1$ la $x_h$ ({\itshape1})).
+Din faptul că $G$ este conex $\Rightarrow \exists$ drum de la $x_1$ la $x_i$, $\forall i$.
+
+Presupunem prin reducere la absurd că $\exists i$ a.î. $\nexists$ drum de la $x_i$ la $x_1$ în $\overrightarrow{G}$ (alegem pe $x_i$ la distanță dfs minimă față de $x_1$).
+
+\textbf{Cazul I}: Dacă $x_i$ nu este frunză $\Rightarrow G-e$ este conex, unde $e=yx_i,\ y$ fiind un nod adiacent lui $x_i$ și $\in$ drumului de la $x_1$ la $x_i$ ($G$ este $k$-muchie-conex, $k\geq2$) $\Rightarrow \exists$ o muchie $x_jx_k$ în $G$ a.î. $x_j \in V(T_{x_i}) \setminus \{x_i\}, x_k \in V(G) \setminus V(T_{x_i})$. Din ({\itshape1}) $\Rightarrow k<j$ și $x_k$ se află pe drumul de la $x_1$ la $x_j$, deasupra lui $x_i$. $\exists$ drum de la $x_k$ la $x_1$ (din alegerea lui $x_1$) $\Rightarrow \exists$ drum de la $x_i$ la $x_1$(contradicție).
+
+\textbf{Cazul II}: Presupunem prin reducere la absurd că $x_i$ este frunză. $\exists x_k,\ k<i$ a.î. $x_ix_k \in E(\overrightarrow{G})$. $\exists$ drum de la $x_k$ la $x_1$ în $\overrightarrow{G}$ ($G$ este $k$-muchie-conex, $k\geq2$) $\Rightarrow \exists$ drum și de la $x_i$ la $x_1$ care trece prin $x_k$ în $\overrightarrow{G}$(contradicție).
+
+Din (\textbf{I}), (\textbf{II}) $\Rightarrow$ presupunerea făcută este falsă $\Rightarrow \exists$ drum de la $x_i$ la $x_1$, $\forall i$.
+
+"$\Rightarrow$": $\exists$ drum de la $x_i$ la $x_j,\ \forall x_i,\ x_j \in V(\overrightarrow{G}),\ x_i\neq x_j$.\newline
+Presupunem prin reducere la absurd că $G$ este 1-muchie-conex ($\exists e \in E(G)$ a.î. $G-e$ este neconex).
+
+\textbf{Cazul I}: $\exists i$ a.î. $x_i \in V(G)$ este frunză și $e$ este muchia care conectează $x_i$ de restul grafului $\Rightarrow \exists$ drum de la $x_j$ la $x_i$, dar $\nexists$ drum de la $x_i$ la $x_j$ în $\overrightarrow{G}, \forall j\neq i$(contradicție).
+
+\textbf{Cazul II}: Fie $x_i,x_j \in V(G)$ a.î. $x_jx_i = e, x_jx_i \in E(\overrightarrow{G})$ și $S,T$ componente conexe, $S,T \subset G-e, S\cup T=G-e, x_j \in S, x_i \in T$(capetele muchiei e se află în componente conexe diferite în $G-e$). Atunci $\exists$ drum de la $\forall y \in S$ la $\forall z \in T$ care trece prin $x_j$ și $x_i$ în $\overrightarrow{G}$, dar $\nexists$ drum de la $\forall z \in T$ la $\forall y \in S$ care trece prin $x_i$ și $x_j$ în $\overrightarrow{G}$(contradicție).
+
+Din (\textbf{I}), (\textbf{II}) $\Rightarrow$ presupunerea făcută este falsă $\Rightarrow G$ este $k$-muchie-conex,\linebreak $k\geq2 \Leftrightarrow G$ nu are punte. 
+
+\subsection{(b)}
+
+Fie $G=(V,E)$ graful neorientat conex asociat rețelei stradale a orașului. Pentru algoritmul ce urmează a fi descris vom presupune că muchiile acestuia sunt reprezentate cu ajutorul listelor de adiacență: pentru un nod $u$, $A[u]$ este mulțimea tuturor nodurilor adiacente cu $u$. 
+
+Ideea algoritmului: se face o parcurgere DFS a grafului $G$, fie $u$ nodul curent (ce a fost scos din stivă) și $uv$ muchia curentă. Dacă nodul $v$ a fost vizitat, atunci muchia $uv$ este muchie de întoarcere, deci va fi transformată în arcul $vu$, iar dacă nu a fost vizitată atunci nodul $v$ va fi introdus în stivă și muchia va fi transformată în arcul $uv$. Verificarea dacă un nod a fost vizitat se face în $O(1)$ cu ajutorul unui vector caracteristic: $visited[u] = true$ dacă nodul a fost vizitat,  inițial $visited[v] = false, \forall v \in V$. 
+
+Întrucât G este neorientat, $\forall u,v \in V$ dacă $u \in A[v]$ atunci și $v \in A[u]$, deci în timpul parcurgerii grafului trebuie să ne asigurăm că atunci când analizăm muchia $uv$, ștergem din $A[v]$ pe $u$, pentru a nu analiza aceeași muchie de 2 ori, și deci să introducem arce în plus în digraful rezultat.
+
+Graful $G=(V,E)$ este $k$-muchie conex, $k \geq 2$, deci pentru transformarea lui $G$ într-un digraf tare conex $G'=(V,E')$ putem începe parcurgerea dfs din orice nod $u, u \in V$, iar în algoritmul de mai jos am notat acest nod aleator cu $s$. Mulțimea $E$ este reprezentată  prin liste de adiacență, însă algoritmul de mai jos va întoarce ca rezultat o pereche $G'=(V,E')$, unde $V$ este mulțimea de noduri din $G$ iar $E'$ este o mulțime de arce.
+
+\textbf{Complexitatea timp a algoritmului}: Orice nod este introdus în stivă o singură dată, iar orice muchie este analizată o singură dată (atunci cand se decide orientarea sa), deci complexitatea timp a algoritmului este $O(N+M)$, unde $N=|V|$ și $M=|E|$.
+
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\State $E' \gets \varnothing$; // inițial mulțimea arcelor e vidă
+		\For {$(v \in V)$}
+			\State $visited[v] \gets false$;
+		\EndFor
+		\State $S \gets stivaVida()$;
+		\State $push(S,s)$;
+		\While {$ (S \neq \varnothing) $}
+			\State $ u \gets top(S)$;
+			\State $ visited[u] \gets true$;
+			\If {$((v \gets next[A[u]]) \neq NULL)$}
+				\If {$(visited[v] = false)$}
+					\State $push(S,v)$;
+					\State $A'[v] \gets A'[v] \backslash \{u\}$;
+					\State $E' \gets E' \cup \{uv\}$; // arcul uv
+				\Else
+					\State $E' \gets E' \cup \{vu\}$; // muchie de întoarcere, arcul vu
+				\EndIf
+			\Else
+				\State $delete(S,u)$;
+			\EndIf
+		\EndWhile
+		\State $G' \gets (V,E')$
+		\State $return$ $G'$;
+	\end{algorithmic}
+\end{algorithm}	
+
+\section{Problema II}
+
+\subsection{(a)}
+
+"$\Rightarrow$": $X \subseteq V$ este  mulțime $uv$-separatoare minimală $\Rightarrow \exists S,T \subset (G-X), S \neq T$ și $S,T$ conexe a.î. $u \in S, v \in T$ și $\forall X' \subsetneq X, u,v \in S', S' \subset (G-X')$ conex ({\itshape1})$\Leftrightarrow \nexists X'' \subsetneq X, |X''| < |X|$ a.î. $X''$ mulțime $uv$-separatoare minimală. Din ({\itshape1}) $\Rightarrow X$ este o mulțime $ST$-separatoare minimală, $|X| = k(S,T;G)$. Conform Teoremei lui Megner $\Rightarrow p(S,T;G)=k(S,T;G) = |X| \Rightarrow \exists$ maxim $|X|$ drumuri disjuncte de la $S$ la $T$({\itshape2}). Din faptul că $S,T$ sunt conexe și ({\itshape2}) $\Rightarrow \exists$ maxim $|X|$ drumuri disjuncte de la $u$ la $v$({\itshape3}). Din ({\itshape3}), $u \in S,v \in T$ și $S,T \subset (G-X), S \neq T \Rightarrow$ pentru fiecare $x_i \in X$ și $x_i \in P_i$, unde $P_i$ este drum de la $u$ la $v, 1 \leq i \leq |X|, x_i$ va avea 2 noduri adiacente $w_1,w_2,w_1 \in S, w_2 \in T$.
+
+"$\Leftarrow$": Fie $S,T$ componente conexe, $S,T \subset (G-X), S \neq T$ și $u,v$ 2 noduri a.î. $u \in S, v \in T$. Pentru $\forall x \in X, x$ are vecini în $S$, respectiv $T$({\itshape4}) $\Rightarrow X$ mulțime $ST$-separatoare $\Rightarrow X$ mulțime $uv$-separatoare({\itshape5}).
+
+Presupunem prin reducere la absurd că $\exists X' \subsetneq X$ a.î. $X'$ este mulțime $uv$-separatoare minimală de cardinal $|X'| < |X|$. Dar cum are loc ({\itshape4}) $\Rightarrow \exists x_k \in X$ a.î. $x_k \notin X'$ din cauza căruia $S,T$ vor rămâne conectate $\Rightarrow u,v \in S', S' \subset (G-X'), S' = S \cup T, S'$ conex(contradicție) $\Rightarrow$ presupunerea făcută este falsă $\Rightarrow \forall X' \subsetneq X, u,v \in S', S' \subset (G-X'), S'$ conex({\itshape6}).
+
+Din ({\itshape5}), ({\itshape6}) $\Rightarrow X$ este mulțime $uv$-separatoare minimală.
+
+\subsection{(b)}
+
+$X_1,X_2$ mulțimi $uv$-separatoare minimale $\Rightarrow X_1 \neq X_2, X_1 \not \subset X_2, X_2 \not \subset X_1$. Fie $S_1,T_1 \subset (G-X_1)$ componente conexe distincte a.î. $u \in S_1, v \in T_1$ și $\forall x_1 \in X_1$ are vecini în $S_1$ și $T_1$, respectiv $S_2,T_2 \subset (G-X_2)$ componente conexe distincte a.î. $u \in S_2, v \in T_2$ și $\forall x_2 \in X_2$ are vecini în $S_2$ și $T_2$.
+
+Presupunem prin reducere la absurd că $X_1$ intersectează cel mult una din componentele conexe $S_2$ și $T_2$.
+
+\textbf{Cazul I}: $X_1$ nu intersectează nici una din componentele conexe $S_2$ și $T_2 \Rightarrow X_1$ este o mulțime independentă de cele 2 componente({\itshape1}). Dar $X_1$ este mulțime $uv$-separatoare minimală $\Rightarrow \forall x_1 \in X_1$ are vecini în $S_2$ și $T_2$ ({\itshape2}). Din ({\itshape1}), ({\itshape2}) $\Rightarrow S_2,T_2$ fac parte din aceeași componentă conexă $\Rightarrow u, v$ fac parte din aceeași componentă conexă $\Rightarrow X_2$ nu este mulțime $uv$-separatoare minimală(contradicție).
+
+\textbf{Cazul II}: $X_1$ intersectează una dintre componentele conexe $S_2, T_2$. Dar $X_1$ intersectează cel puțin 2 componente din $(G-X_2) \Rightarrow X_1$ intersectează măcar o altă componentă conexă, independentă de cele 2. Fie $Q$ respectiva componentă. Avem că $X_1$ este mulțime $uv$-separatoare minimală, dar $u,v$ fac parte din componente conexe diferite în $G - (X \setminus Q) \Rightarrow (X \setminus Q)$ este mulțime $uv$-separatoare de cardinal $|X\setminus Q| < |X|$(contradicție).
+
+Din (\textbf{I}), (\textbf{II}) $\Rightarrow$ presupunerea facută este falsă $\Rightarrow X_1$ intersectează pe $S_2, T_2$, unde $S_2,T_2 \subset (G-X_2)$ conexe și $u \in S_2, v \in T_2$.
+
+\section{Problema III}
+
+\subsection{(a)}
+	
+Fie următorul algoritm:
+\begin{algorithm}[h]
+	\begin{algorithmic}[1]
+		\State $V' \gets V$; $A' \gets A$;
+		\State construct the array $d_G[u]$, $\forall u \in V'$;
+		\State $Q \gets \{ u \in V : d_G[u] < m/n \}$; // $Q$ este o coadă
+		\While {$ (Q \neq \varnothing) $}
+			\State $v \gets pop(Q)$;
+			\State $V' \gets V' \backslash \{v\}$;
+			\For {$( w \in A'[v] )$}
+				\State $A'[v] \gets A'[v] \backslash \{w\}$;
+				\State $A'[w] \gets A'[w] \backslash \{v\}$;
+				\State $--d_G[w]$;
+				\If {$(d_G[w] < m/n)$}
+					 \State $push(Q,w)$;
+				\EndIf
+			\EndFor
+		\EndWhile
+		\State return $(V,A)$;
+	\end{algorithmic}
+\end{algorithm}	
+
+\textbf{Ideea algoritmului}: Se calculează gradele fiecărui nod din graf. La fiecare moment vom menține o mulțime de noduri despre care știm că trebuie eliminate din graf, vom implementa acest lucru cu ajutorul unei cozi (structura de date abstractă ce are complexitate O(1) pe extragerea unui element). La început se introduc într-o coadă toate acele noduri $u$, cu $d_G[u] < m/n$. Apoi, cât timp coada e nevidă, efectuăm următoarele operații: extragem $u$ primul nod din coadă, parcurgem lista lui de adiacență și decrementăm gradele nodurilor $v$ adiacente cu u, dacă $d_G[v]$ devine $ < m/n$, introducem și nodul $v$ în coadă.
+
+\textbf{Afirmație}: Algoritmul descris mai sus este o implementare eficientă a algoritmului din enunțul problemei.
+
+\textbf{Demonstrație}: Un nod $u$ se poate afla în situația să îndeplinească condiția $d_G[u] < m/n$ în două cazuri:
+
+\textbf{Cazul I}: În graful inițial $G$ acesta este adiacent cu mai puțin de $m/n$ noduri.
+
+\textbf{Cazul II}: După ce din graful $G$ au fost eliminate un număr de noduri adiacente cu $u$, deci gradul acestuia a scăzut. 
+
+\textbf{Afirmație}: Algoritmul de mai sus ce folosește o coadă nu poate "rata" nici un nod $u$ ce a ajuns să aibă la un moment dat $d_G[u] < m/n$:
+
+\textbf{Cazul I}: La început se introduc în coadă toate nodurile cu grad $ < m/n $.
+
+\textbf{Cazul II}: Fie $u$ nodul scos din coadă la momentul $t$. Fie $w$, pe rând, fiecare nod adiacent cu $u$. Dacă în urma instrucțiunii $--d_G[w]$ gradul acestuia ajunge să fie $ < m/n $, acesta este introdus imediat în coadă, deci va fi eliminat din graf, iar dacă gradul rămâne $ >= m/n $, atunci la momentul $t$ știm sigur că el nu trebuie eliminat. Fie $x$, pe rând, orice nod din G neadiacent cu $u$, ce nu se află în coadă și ce nu a fost încă eliminat. La momentul $t$ gradul acestuia nu este afectat de eliminarea lui $u$, iar la momentul $t-1$ știm sigur că acesta avea $d_G[x] \geq m/n$ (altfel $x$ ar fi fost introdus în coadă), deci nici la momentul $t$ acesta nu trebuie eliminat. Deci putem afirma că nici un nod nu va fi ratat în timpul procesului de eliminare a nodurilor.
+
+\textbf{Complexitate}: Fiecare nod poate fi introdus în coadă cel mult o dată, iar fiecare muchie poate fi parcursă tot o singură dată, deci complexitatea timp a algoritmului este $O(N+M)$, unde $N=$ numărul de noduri și $M=$ numărul de muchii, iar complexitatea memoriei este $O(N)$, întrucât se folosește o coadă în care nu pot fi introduse mai mult de $N$ noduri și un vector de dimensiune $N$ pentru a ține minte gradele fiecărui nod. (ignorăm memoria utilizată pentru memorarea grafului). 
+
+\subsection{(b)}
+
+Pentru cerința dată, vom presupune că $n \geq 2$ și $m \geq 1$, adică graful nostru admite cel puțin o muchie. Avem relațiile $d_G(v) \in \left\{0,1,2,\ldots,n-1\right\}, \forall v \in V, 1 \leq m \leq \binom{n}{2}$ și $0 \leq m/n \leq |E(K_n)|/n, |E(K_n)|=\binom{n}{2}$, unde $n \geq 2$.\newline
+Presupunem prin reducere la absurd că graful $G'$ obținut în urma executării algoritmului este nul, adică $G' = K_0$.
+
+\textbf{Cazul I}: $m < n$ în graful inițial $G \Rightarrow 0 < m/n <1 \Rightarrow \forall Q$ componentă conexă din $G$ cu $|Q| \geq 2$ nu va fi afectată de algoritm $\Rightarrow G'$ nu este nul(contradicție).
+
+\textbf{Cazul II}: $n \leq m <2n$ în graful inițial $G \Rightarrow 1 \leq m/n < 2$. Fie $Q \subset V$ o mulțime de noduri ce descrie fie un graf complet cu $d_{[Q]_G}(v) \geq 2$, fie un circuit $C_k,k \geq 3$. Cum gradul nodurilor lui  $[Q]_G$ este deja $\geq 2 \Rightarrow$ nici după ștergerea tuturor nodurilor $y \in G-Q, y \in N_G(v), v \in Q$ cu $d_G(y) < m/n$ din $G$, $d_G(v) \geq 2, \forall v \in Q$. Asta înseamnă că, în urma execuției algoritmului, $Q$ nu va fi șters $\Rightarrow G'$ nu este nul(contradicție).
+
+\textbf{Cazul III}: $m \geq 2n$ în graful inițial $G \Rightarrow 2 \leq m/n \leq |E(K_n)|/n$. Fie $Q \subset V$ o mulțime de noduri ce descrie un graf complet cu $d_{[Q]_G}(v) \geq \lceil m/n \rceil, \forall v \in Q$ în $G$. Cum gradul nodurilor lui $[Q]_G$ este deja $\geq \lceil m/n \rceil \Rightarrow$ nici după ștergerea tuturor nodurilor $y \in G-Q, y \in N_G(v), v \in Q$ cu $d_G(y) < m/n$ din $G$, $d_G(v) \geq \lceil m/n \rceil, \forall v \in Q$. Asta înseamnă că, în urma execuției algoritmului, $Q$ nu va fi șters $\Rightarrow G'$ nu este nul(contradicție).
+
+Din (\textbf{I}), (\textbf{II}), (\textbf{III}) $\Rightarrow$ presupunerea făcută este falsă $\Rightarrow G'$ este nenul(mai exact, are cel puțin o muchie).
+
+\subsection{(c)}
+
+Fie $G$ un graf oarecare cu $m \geq 0, n \geq 1$, pe care îl supunem algoritmului descris în ipoteză. Conform \textbf{(b)} $\Rightarrow \exists Q \subset V$ o mulțime de noduri a.î. $[Q]_G$ este:
+\begin{enumerate}[I.]
+	\item o componentă conexă cu $|Q|\geq2$ pentru $m<n$;
+	\item fie un circuit $C_k, k\geq 3$, fie un graf complet $K_m, m\geq3$ pentru $n\leq m <2n$;
+	\item un graf complet $K_m,m\geq \lceil m/n \rceil +1$ pentru $2n\leq m$.
+\end{enumerate}
+În toate cazurile, $\exists D$ un drum în $[Q]_G$ de lungime cel puțin $m/n \Rightarrow \exists D$ un drum de lungime cel puțin $m/n$ în $G$ pentru $n \geq 2, m\geq 1$. Cum într-un graf gol(fără muchii) orice nod izolat determină un graf complet $K_1$ cu un drum $D$ de lungime $0/n = 0 \Rightarrow \exists D$ un drum de lungime cel puțin $m/n$ în $G$ pentru $n \geq 1, m\geq 0$.
+
+\section{Problema IV}
+
+\subsection{(a)}
+\textbf{Afirmația 1}: Algoritmul lui Dijkstra clasic poate fi modificat astfel încât, pentru un digraf $G=(V,E)$, o funcție $a:E \rightarrow R _{+}$ și un nod $s$ din care toate celelalte noduri sunt accesibile, acesta să calculeze atât un vector ce conține costul minim al unui drum de la nodul de start $s$ la oricare dintre noduri, cât și o submulțime de arce $A, A \subseteq E, |A| = |V|-1$, iar $T=(V,A)$ să fie un arbore.
+
+\textbf{Demonstrație}: Fie următorul algoritm:
+
+\begin{algorithm}
+	\caption{Algoritmul lui Dijkstra, cursul 4}
+	\begin{algorithmic}[1]
+		\State S $\gets$ {s}; before[s] $\gets$ 0; $u_{s} \gets 0$;
+		\For {$(i \in V \backslash \{s\})$}
+			\State $u_{i} \gets a_{si}$; before[i] $\gets s$;
+		\EndFor
+		\While {$(S \neq V)$}
+			\State find $j^{*} \in V \backslash \{S\}$ s. t. $u_{j^{*}} = min \{u_j : j \in V \backslash S\}$;
+			\State S $\gets$ S $ \cup $ $\{j^{*}\}$;
+			\For {$(j \in V \backslash S)$}
+				\If {$(u_j > u_{j^{*}} + a_{j^{*}j})$}
+					\State $u_j \gets u_{j^{*}} + a_{j^{*}j}$; before[i] $\gets j^{*}$;
+				\EndIf
+			\EndFor
+		\EndWhile
+	\end{algorithmic}
+\end{algorithm}
+
+E suficient să introducem o singură instrucțiune în acest algoritm pentru ca acesta să construiască și mulțimea $A$, și anume, vom introduce in bucla $while$, după instrucțiunea numărul 6, următoarea instrucțiune: $$7: A \gets A \cup \{before[j^{*}]j^*\}$$
+
+Întrucât instrucțiunea 4 se repetă de $|V|-1$ ori, înseamnă că la final $|A|=|V|-1$, iar cum orice nod din graful $G$ este accesibil din nodul $s$, atunci sigur există și cel puțin un drum între $s$ și $i \in V \backslash \{s\}$, drum al cărui cost este mai mic decât $\infty$ (valoarea $a_{si}$ atunci când arcul ${si}$ nu se găsește în graf), deci $A \subseteq E$ (vom alege numai arce din graful $G$). Cum știm că nu se formează un ciclu? Pentru ca acest lucru să se întâmple ar trebui ca cel puțin un nod $j^{*}$ găsit în bucla while să fie adiacent cu 2 noduri ce au fost deja introduse în mulțimea $S$, însă noi adăugăm în mulțimea $A$ câte o singură muchie la fiecare pas: $before[j^{*}]j^*$.
+
+Fie $G=(V,E)$ digraful din enunț, $a:E \rightarrow R _{+}$ funcția din enunț și $x_0 \in V$ un nod din digraful $G$ din care toate celelalte noduri sunt accesibile. Fie $T=(V,A)$ arborele returnat de algoritmul descris în afirmația 1, algoritm aplicat pe digraful $G$, funcția $a$ și $s=x_0$.
+
+\textbf{Afirmația 2}: În arborele $T$, pentru orice nod $u \in V$, costul minim al drumului de la $x_0$ la $u$ este egal cu costul minim al unui drum drum de la $x_0$ la $u$ în digraful $G$.
+
+\textbf{Demonstrație}: 
+
+Presupunem că pentru un nod $u \in V$ există $D_2(x_0,u)$ în $G$ de cost mai mic decât $D(x_0,u)$ în $T$. Dar drumul $D(x_0,u)$ în $T$ găsit cu ajutorul algoritmului descris în afirmația 1, aplicat pe digraful $G$, ceea ce înseamnă că algoritmul descris în afirmația 1 este greșit, pentru că nu a găsit drumul de cost minim $D_2(x_0,u)$, ci a găsit un alt drum, $D(x_0,u)$, care are cost mai mare. Dar algoritmul descris în afirmația 1 este exact algoritmul lui Dijkstra, care este corect, deci presupunerea inițială este falsă, deci drumurile din arborele $T$ sunt de cost minim.
+
+Arborele $T=(V,A)$ returnat de algoritm respectă criteriile din enunț, deci $T$ este un $SP-arbore$, iar cum algoritmul descris în afirmația 1 găsește mereu un arbore $T$ într-un digraf ce respectă specificațiile, înseamnă că un $SP-arbore$ există întotdeauna.
+
+\subsection{(b)}
+
+\begin{algorithm}
+	\begin{algorithmic}[1]
+		\State $A \gets \varnothing$; // inițial mulțimea arcelor e vidă
+		\State S $\gets$ {$x_0$}; before[$x_0$] $\gets$ 0; $u_{x_0} \gets 0$;
+			\For {$(i \in V \backslash \{x_0\})$}
+				\State $u_{i} \gets a_{x_0i}$; before[i] $\gets x_0$;
+			\EndFor
+		\While {$(S \neq V)$}
+			\State find $j^{*} \in V \backslash \{S\}$ s. t. $u_{j^{*}} = min \{u_j : j \in V \backslash S\}$;
+			\State S $\gets$ S $ \cup $ $\{j^{*}\}$;
+			\State $A \gets A \cup \{before[j^{*}]j^*\}$
+			\For {$(j \in V \backslash S)$}
+				\If {$(u_j > u_{j^{*}} + a_{j^{*}j})$}
+					\State $u_j \gets u_{j^{*}} + a_{j^{*}j}$; before[i] $\gets j^{*}$;
+				\EndIf
+			\EndFor
+		\EndWhile
+		\State $T \gets (V,A)$;
+		\State $return$ $T$;
+	\end{algorithmic}
+\end{algorithm}
+
+După cum am arătat la \textbf{(a)}, algoritmul de mai sus găsește întotdeauna un $SP-arbore$ într-un digraf în care există un nod $s$ din care toate celelalte noduri sunt accesibile.
+
+Construirea mulțimii $A$ se face în $(n-1)$ pași, unde $n=|V|-1$: folosind vectorul $before$, $before[nod]$= nodul aflat înainte de nodul $nod$ pe drumul de cost minim de la $s$ la $nod$, se adaugă $n-1$ arce de tipul $before[nod] \to nod$. Tabloul unidimensional $before$ este numit și "vector de tați", iar faptul că algoritmul descris construiește un astfel de vector confirmă faptul că $T=(V,A)$ este un graf conex aciclic maximal.
+
+\end{document}

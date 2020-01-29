@@ -1,0 +1,1 @@
+find ~/cProgramming/ -perm -u+x -printf "%p %a %k KB\n";

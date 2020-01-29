@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -v $1  ]
+then
+	read -p "n=" n
+	read -p "m=" m
+elif [ -v $2 ]
+then
+	read -p "m=" m
+else
+	n=$1
+	m=$2
+fi
+
+ans=0
+
+for ((i=1;i<=m;i++))
+do
+	ans=$((ans+$n))
+done
+
+echo "$n*$m=$ans"

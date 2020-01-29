@@ -1,0 +1,1 @@
+find bashProgramming -perm -g+rx -printf "%p : %M\n"

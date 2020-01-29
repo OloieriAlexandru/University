@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -v $1 ]
+then
+	read -p "n=" n
+else
+	n=$1
+fi
+
+if [ "$n" -eq 1 ]
+then
+	echo "1"
+elif [ "$n" -eq 2 ]
+then
+	echo "1"
+else
+a=1
+b=1
+for((i=3;i<=n;i++))
+do
+	let c=$a+$b
+	let a=$b;
+	let b=$c;
+done	
+echo $c;
+fi
+
+

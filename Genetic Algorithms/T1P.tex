@@ -1,0 +1,159 @@
+\documentclass[a4paper]{article}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{float}
+\restylefloat{table}
+\usepackage{booktabs}
+
+\usepackage{indentfirst}
+\usepackage{url}
+
+\title{T1P - The fitness landscape of a given unimodal function}
+\author{Oloieri Alexandru}
+\date{November 4, 2019}
+
+\begin{document}
+	
+\maketitle
+	
+\section{Introduction}
+
+This paper analyzes the fitness landscape of the function $f$, by determining its local maximas and its basins of attraction, with the help of two metaheuristics: First / Best Improvement Hill Climbing.
+
+$$f(x) = x^3 - 60 \cdot x^2 + 900 \cdot x + 100, x \in \left[0,31\right]$$
+
+\section{Experiment}
+
+The way we chose to represent the candidates and the way we defined the neighbors lead to the fact that for an initial candidate, for any of the two methods, the returned value will always be the same. In Table 1. I have listed all the possible initial solutions, and the local/global maximas the algorithms will get stuck in. To complete the table, I have run both algorithms sufficient number of times to see for each point from the function domain the local/global maxima point it will get stuck in.
+
+For the mentioned interval, the function is unimodal, and it reaches its global maxima in $x=10$, where $f(x)=4100$, and it took between 1 and 5 runs for each algorithm to get to the optimal value.
+
+\subsection{Best Improvement Hill Climbing basins of attraction}
+
+Global maximum point: 
+\begin{itemize}
+	\item 10, basin of attraction: $\{0, 1, 2, 3, 5, 8, 9, 10, 11, 13, 14, 15, 21, 24, 25, 26, 27, 29, 30, 31\}$
+\end{itemize}
+
+Local maximum points:
+\begin{itemize}
+	\item 7, basin of attraction: $\{6, 7, 22, 23\}$
+	\item 12, basin of attraction: $\{4, 12, 28\}$
+	\item 16, basin of attraction: $\{16, 17, 18, 19, 20\}$
+\end{itemize}
+
+\subsection{First Improvement Hill Climbing basins of attraction}
+
+Global maximum point: 
+\begin{itemize}
+	\item 10, basin of attraction: $\{5, 6, 9, 10, 11, 13, 14, 21, 22, 25, 26, 27, 29, 30\}$
+\end{itemize}
+
+Local maximum points:
+\begin{itemize}
+	\item 7, basin of attraction: $\{7, 15, 23, 31\}$
+	\item 12, basin of attraction: $\{4, 8, 12, 20, 24, 28\}$
+	\item 16, basin of attraction: $\{0, 1, 2, 3, 16, 17, 18, 19\}$
+\end{itemize}
+
+\subsection{Remarks}
+
+For Best Improvement Hill Climbing we have 20 starting points that will get us to the global maxima, so for a run there is a $p = 20/32 = 0.625$ probability we will find the global maximum.
+
+For First Improvement Hill Climbing we have 14 starting points that will get us to the global maxima, so for a run there is a $p = 14/32 = 0.4375$ probability we will find the global maximum.
+
+So for this function, with the current restrictions, Best Improvement Hill Climbing produces better results, since the basin of attraction of the global maxima is larger than the one of the First Improvement algorithm.
+
+\begin{table}[!h]
+	\centering
+	\caption{All possible starting points}
+	\begin{tabular}{|r|r|r|r|}
+		 \multicolumn{2}{|c|}{Best Improvement Hill Climbing} & \multicolumn{2}{|c|}{First Improvement Hill Climbing} \\
+		\midrule
+		\multicolumn{1}{|c|}{Start point} & \multicolumn{1}{c|}{End point} & \multicolumn{1}{c|}{Start point} & \multicolumn{1}{c|}{End point} \\
+		\midrule
+		0 & 10 & 0 & 16 \\
+		\midrule
+		1 & 10 & 1 & 16 \\
+		\midrule
+		2 & 10 & 2 & 16 \\
+		\midrule
+		3 & 10  & 3 & 16 \\
+		\midrule
+		4 & 12 & 4 & 12 \\
+		\midrule
+		5 & 10 & 5 & 10 \\
+		\midrule
+		6 & 7 & 6 & 10 \\
+		\midrule
+		7 & 7 & 7 & 7 \\
+		\midrule
+		8 & 10 & 8 & 12 \\
+		\midrule
+		9 & 10  & 9 & 10 \\
+		\midrule
+		10 & 10 & 10 & 10 \\
+		\midrule
+		11 & 10 & 11 & 10 \\
+		\midrule
+		12 & 12 & 12 & 12 \\
+		\midrule
+		13 & 10 & 13 & 10 \\
+		\midrule
+		14 & 10 & 14 & 10 \\
+		\midrule
+		15 & 10 & 15 & 7 \\
+		\midrule
+		16 & 16 & 16 & 16 \\
+		\midrule
+		17 & 16 & 17 & 16 \\
+		\midrule
+		18 & 16 & 18 & 16 \\
+		\midrule
+		19 & 16 & 19 & 16 \\
+		\midrule
+		20 & 16 & 20 & 12 \\
+		\midrule
+		21 & 10 & 21 & 10 \\
+		\midrule
+		22 & 7 & 22 & 10 \\
+		\midrule
+		23 & 7 & 23 & 7 \\
+		\midrule
+		24 & 10 & 24 & 12 \\
+		\midrule
+		25 & 10 & 25 & 10 \\
+		\midrule
+		26 & 10 & 26 & 10 \\
+		\midrule
+		27 & 10 & 27 & 10 \\
+		\midrule
+		28 & 12 & 28 & 12 \\
+		\midrule
+		29 & 10 & 29 & 10 \\
+		\midrule
+		30 & 10 & 30 & 10  \\
+		\midrule
+		31 & 10 & 31 & 7 \\
+		\bottomrule
+	\end{tabular}%
+	\label{tab:addlabel}%
+\end{table}%
+
+\section{Conclusions}
+
+Since we work with a very small number of possible candidates, we need a small number of runs for any of the two algorithms to get to global maxima, and both methods are dependent on the starting point: it determines which points from the function domain will be checked, which will not, and what will be the returned value of the algorithm.
+
+\begin{thebibliography}{9}
+
+\bibitem{Assignment statement}
+	The statement of the assignment:
+	\url{https://profs.info.uaic.ro/~pmihaela/GA/FL.html}
+
+\bibitem{Numerical optimization plaftorm}
+	The github repository of the application used in this experiment:
+	\url{https://github.com/OloieriAlexandru/Numerical-Optimization-Platform/tree/T1P}
+	
+\end{thebibliography}
+	
+\end{document}

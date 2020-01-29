@@ -1,0 +1,1 @@
+find ./ \( -name "a*" -o -name "*a" \) -printf "%f %t %k\n";

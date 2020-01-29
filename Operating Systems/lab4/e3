@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ -v $1 ]
+then
+	echo "Trebuie sa introduci un argument, calea directorului!"
+	exit 1;
+fi
+
+path=$1;
+errorFile=errors.txt
+files=`ls $1`;
+
+for file in $files
+do
+	if [[ $file == *.sh ]]
+	then
+		base=`basename $file .sh`;
+		newName=$path"/"$base".zip"
+		zip $newName $path/$file;
+	fi
+	if [[ $file == *.txt ]]
+	then
+		gzip -k "$path/$file";
+	fi
+done
+

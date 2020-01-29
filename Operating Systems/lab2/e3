@@ -1,0 +1,1 @@
+sort /home/alexoloieri/cLinux/fileToSort.txt -r > output.txt

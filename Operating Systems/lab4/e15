@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -v $1 ]
+then
+	echo "Trebuie sa introduci un argument, calea directorului!"
+	exit 1;
+fi
+
+path=$1;
+errorFile=errors.txt
+files=`ls $1`;
+
+for file in $files
+do
+	if [ ${file: -2} == ".c" ]
+	then
+		file=${file##*/}
+		base=${file%.*};
+		`gcc -o $path/$base.exe $path/$file 2>> $path$errorFile`; 
+	fi
+done
+

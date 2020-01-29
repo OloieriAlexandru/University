@@ -1,0 +1,16 @@
+#!/bin/bash
+
+n=$1;
+sum=0;
+
+if [ -z "$n" ]
+then 
+	read -p "n=" n
+fi
+
+for ((i=1;i<=n;i++))
+do
+	sum=$(($sum+$i*$i));
+done
+
+echo "Rezultatul calculului pentru n=$n este $sum";

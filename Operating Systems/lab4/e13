@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -v $1 ]
+then
+	read -p "n=" n
+else
+	n="$1"
+fi
+
+rez=1
+for ((i=2;i<=n;i++))
+do
+	rez=$((rez*$i))
+done
+
+echo "$n!=$rez"

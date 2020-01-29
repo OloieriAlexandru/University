@@ -1,0 +1,43 @@
+
+/* inputul contine declaratii de variabile intr-un limbaj care contine urmatoarele tipuri de date:
+- tipul simplu String
+- tipul simplu Number
+- tipul Array
+- tipul Object
+Declaratiile sunt de forma let id:Tip = valoare
+Valorile tipului Object sunt perechi de forma cheie:valoare (separate de virgula)
+unde cheia este un identificator iar valoare poate fi orice valoare a unuia
+din cele 4 tipuri. Pot exista obiecte vide.
+
+Valorile unui tip Array sunt valori ale oricarui din cele 4 tipuri.
+Pot exista array-uri fara elemente.
+
+Dupa declaratii pot urma 0 sau mai multe instructiuni de forma:
+eval_expr:expresie, unde expresie poate fi orice expresie avand ca operanzi identificatori sau numere
+sau
+eval_array:[expresie_1, expresie_2,....expresie_n];
+*/
+
+let obj:Object = {};
+
+let student:Object = {
+   stringkey: "Popescu Ion", 
+   numberkey: 123498989,
+   arraykey:[{x:1, y:20}, 12, [12, 14], "some string",[]],
+   objectkey: {somekey:12, otherkey:"bla"},
+   key:30
+};
+
+let val1:String = "array";
+
+let val0:Number = 12;
+
+let val2:Array  = [12, "some string", 30, {a:"a"}];
+
+let val3: Array = [];
+
+eval_expr:val1+(23*423-23);
+eval_expr:val2+4-3;
+eval_array:[val1+2, exp*2,4];
+
+

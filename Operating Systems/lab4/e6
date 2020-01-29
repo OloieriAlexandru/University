@@ -1,0 +1,45 @@
+#!/bin/bash
+
+n=$#;
+
+if [ $n -eq 0 ]
+then
+	cnt=0;
+	read numbers;
+	for nr in $numbers
+	do
+		cnt=$(($cnt+1));
+		if [ $cnt -eq 1 ]
+		then
+			minim=$nr;
+			maxim=$nr;
+		else
+			if [ $nr -gt $maxim ]
+			then
+				maxim=$nr;
+			fi
+			if [ $nr -lt $minim ]
+			then
+				minim=$nr;
+			fi
+		fi
+	done
+	echo "Maxim=$maxim Minim=$minim";
+	exit 0;
+fi 
+minim=$1;
+maxim=$1;
+for ((i=2;i<=n;i++))
+do
+	shift 1;
+	if [ $1 -gt $maxim ]
+	then
+		maxim=$1;
+	fi
+	if [ $1 -le $minim ]
+	then
+		minim=$1;
+	fi
+done
+
+echo "Maxim=$maxim Minim=$minim"

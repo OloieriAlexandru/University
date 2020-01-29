@@ -1,0 +1,1 @@
+find ~ -maxdepth 1 -name "*.c" -size -5120 -printf "path: %p\n size: %s\n" -exec gcc \{} 2>>errors.txt \;

@@ -1,0 +1,37 @@
+/*
+Fiesierul contine tag-uri de 4 tipuri:
+<body>, <item>, <list> si <entry>
+Fiecare tag <entry> contine un sir nevid de simboluri incadrat de | | sau un tag <list>. 
+Fiecare tag <list> contine 0 sau mai multe taguri <entry>.
+Fiecare tag <item> contine 0 sau 1 tag de tip <list> sau <entry> 
+Exista un unic tag <body> care contine unul sau mai multe taguri <item>
+*/
+<body>
+	<item>
+		<list>
+			<entry>|some text|</entry>
+			<entry>|some more text|</entry>
+			<entry>|some other text|</entry>
+			<entry>|some text with numbers 123|</entry>
+		</list>
+	</item>
+	<item>
+		<entry>|single entry text|</entry>
+	</item>
+	<item>
+		<list>
+			<entry>
+				<list>
+					<entry>|some text|</entry>
+					<entry>|some more text|</entry>
+					<entry>|some other text|</entry>
+					<entry>|some text with numbers 123|</entry>
+				</list>
+			</entry>
+			<entry>|some more text|</entry>
+			<entry>|some other text|</entry>
+			<entry>|some text with numbers 123|</entry>
+		</list>
+	</item>
+	<item><list></list></item>
+</body>

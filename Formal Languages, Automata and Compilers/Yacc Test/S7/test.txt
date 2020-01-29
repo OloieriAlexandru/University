@@ -1,0 +1,34 @@
+/* inputul contine un program intr-un limbaj care contine urmatoarele tipuri de date:
+- tipul simplu int
+- tipul simplu float
+- tipul simplu char
+- tablouri
+- fiecare program (incadrat intre program si endP) are un segment de declaratii (declaration...endD) urmat de un segment de cod (code...endC)
+- segmentele de declaratii si cod nu pot fi vide
+- Declaratiile de variabile sunt de urmatoarele forme
+	- var identificator(type tip, simple) pentru variabile simple
+	- var identificator(type tip, array) pentur tablouri
+	- tip identificator = (constanta|identificator),...; 
+- segmentul de cod contine instructiuni de urmatoarele tipuri:
+	- assign (identificator, constanta|identificator)
+	- assert, care primeste un unic parametru de tip + sau *
+	- + si *, care primesc macar un parametru, si oricat de multi de tip identificator, constanta
+	- item(identificator, constanta) acceseaza un membru al unui array
+	- print, care primeste oricati parametri, dar macar unul, instructiuni de orice tip dintre cele de mai sus
+*/
+
+program
+	declaration
+		var a(type int, simple)
+		var b(type float, simple)
+		var c(type int, array)
+	    int d=(5)
+	    int e = (a)
+	endD
+	code
+		assign(a, 10)
+		assign(b, +(a, 10.5))
+		assert(*(a, b, 10, item(d,2)))
+		print(item(c, 4), 10)
+	endC
+endP

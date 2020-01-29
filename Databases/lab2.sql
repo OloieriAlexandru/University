@@ -1,0 +1,14 @@
+1. select nume, prenume, an, data_nastere from Studenti; 
+2. select distinct bursa from Studenti where bursa is not null;
+3. select nume as "a nume", prenume as "a prenume", an as "a an", data_nastere as "a data_nastere" from Studenti;
+4. select nume||' '||prenume||', anul '||an as "Studenti pe ani de studiu" from Studenti order by an;
+5. select nume, prenume, data_nastere from Studenti where data_nastere between '13-JAN-1995' and '10-JUN-1997' order by data_nastere;
+6. select nume, prenume, an from Studenti where data_nastere between '1-JAN-1995' and '31-DEC-1995';
+7. select * from Studenti where bursa is null;
+8. select nume, prenume from Studenti where bursa is not null and an between 2 and 3 order by nume ASC, prenume DESC;
+9. select Studenti.*, bursa * 1.15 as "Noua bursa" from Studenti where bursa is not null;
+10. select * from Studenti where an = 1 and nume like 'P%';
+11. select * from Studenti where nume like '%a%a%';
+12. select * from Studenti where prenume in ('Alexandru', 'Ioana', 'Marius');
+13. select * from Studenti where grupa like 'A_';
+14. select * from Profesori where trim(nume) like '%n';

@@ -1,0 +1,58 @@
+/*
+Fiesierul contine tag-uri de 4 tipuri:
+<string>, <number>, <object> si <array>
+Fiecare tag <string> contine siruri de simboluri incadrat de " 
+" si/sau  numere, separate prin simbolul :: 
+Fiecare tag <number> contine un numar.
+Fiecare tag <object> contine oricate tag-uri <key>
+Fiecare tag <key> poate contine un tag <string>, <number>, <object> sau 
+<array>.
+Fiecare tag <array> contine oricate tag-uri <val>
+Fiecare tag <val> poate contine un tag <string>, <number>, <object> sau 
+<array>.
+*/
+<object>
+   <key><string>"Popescu"::45::3</string></key>
+    <key><number>23445</number></key>
+   <key>
+      <object>
+         <key><string>"Some string"</string></key>
+         <key><number>123</number></key>
+         <key>
+            <array>
+            <val><number>234</number></val>
+            <val><string>12::"string"</string></val>
+            </array>
+         </key>
+      </object>
+   </key>
+   <key>
+      <array>
+      <val><number>20</number></val>
+      </array>
+   </key>
+</object>
+<array>
+   <val><number>13</number></val>
+   <val>
+   <array>
+      <val><number>15</number></val>
+   </array>
+   </val>
+   <val>
+   <object>
+         <key><string>"Some string"</string></key>
+         <key><number>123</number></key>
+         <key>
+            <array>
+            <val><number>234</number></val>
+            <val><string>13::56</string></val>
+            </array>
+         </key>
+   </object>
+   </val>
+   <val><string>"string1"</string></val>
+</array>
+
+<string>"Some string"</string>
+<number>345</number>

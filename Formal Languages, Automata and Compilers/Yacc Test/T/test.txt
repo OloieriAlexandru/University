@@ -1,0 +1,50 @@
+<xml>
+   <data><chararray>"dsdadsadsa"</chararray></data>
+   <data><integer>23445</integer></data>
+   <data>
+      <xml>
+         <data><chararray>"dsdasdsad"</chararray></data>
+         <data><integer>-12123</integer></data>
+         <data>
+            <list>
+            <value><integer>0</integer></value>
+            <value><chararray>"chararray"</chararray></value>
+            </list>
+         </data>
+      </xml>
+   </data>
+   <data>
+      <list>
+      <value><integer>20</integer></value>
+      </list>
+   </data>
+   
+</xml>
+
+<xml></xml>
+<list></list>
+
+<list>
+   <value><integer>13</integer></value>
+   <value>
+   <list>
+      <value><integer>-15</integer></value>
+   </list>
+   </value>
+   <value>
+   <xml>
+         <data><chararray>"Some string"</chararray></data>
+         <data><integer>123</integer></data>
+         <data>
+            <list>
+            <value><integer>234</integer></value>
+            <value><chararray>"Ala bala portocala"</chararray></value>
+            </list>
+         </data>
+   </xml>
+   </value>
+   <value><chararray>"chararray1"</chararray></value>
+</list>
+
+<chararray>"Some other chars "</chararray>
+<integer>345</integer>

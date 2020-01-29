@@ -1,0 +1,1 @@
+find ~ -type f -mtime -7 -printf "Nume: %f\nDrepturi: %M\nUltima modificare: %f\n" 

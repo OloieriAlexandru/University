@@ -1,0 +1,58 @@
+#!/bin/bash
+#Triunghiul lui Pascal
+
+if [ $# -eq 1 ]
+then
+	read -p "k=" k;
+fi
+
+if [ $# -eq 0 ]
+then
+	read -p "n=" n;
+	read -p "k=" k;
+fi
+
+if [ $# -ge 2 ]
+then
+	n=$1;
+	k=$2;
+fi
+
+if [ $k -gt $n ]
+then
+	echo "Nu se poate calcula!\n";
+	exit;
+fi
+
+declare -a v1
+declare -a v2
+
+v1[1]=1;
+v1[0]=1;
+now=1;
+i=2;
+while [ $i -le $n ]
+do
+	v2[0]=1;
+	if [ $now -eq 1 ]
+	then
+		for ((j=1;j<=i;j++))
+		do
+			let v2[$j]=${v1[$j]}+${v1[$(($j-1))]};
+		done
+	else
+		for ((j=1;j<=i;j++))
+		do
+			let v1[$j]=${v2[$j]}+${v2[$(($j-1))]};
+		done
+	fi
+	let now=1-$now;
+	let i++;
+done
+
+if [ $now -eq 1 ]
+then
+	echo ${v1[$k]};
+else
+	echo ${v2[$k]};
+fi

@@ -1,0 +1,1 @@
+find ~/bashProgramming/ \( -name "*.html" -o -name "*.css" -o -name "*.htm" -o -name "*.php" \) -printf "%p %k %t\n";

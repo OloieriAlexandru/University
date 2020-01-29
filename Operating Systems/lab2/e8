@@ -1,0 +1,1 @@
+find ~ \( -name "*.cpp" -o -name "*.c" -o -name "*.h" \) -printf "------------- \n %p \n %s \n %t \n ------------"
