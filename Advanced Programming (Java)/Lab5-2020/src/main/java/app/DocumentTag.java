@@ -41,6 +41,9 @@ public class DocumentTag implements Serializable {
         printWriter.println(value);
     }
 
+    /**
+     * Writes information about this document to the WORD file
+     */
     public void writeToWORD(XWPFDocument document, int number) {
         XWPFParagraph paragraph = document.createParagraph();
         paragraph.setAlignment(ParagraphAlignment.LEFT);
@@ -49,6 +52,9 @@ public class DocumentTag implements Serializable {
         paragraphRun.setText(number + ". " + name + " : " + value);
     }
 
+    /**
+     * Creates a map which will be used by Velocity library for creating the HTML document
+     */
     public Map getAsMap() {
         Map map = new HashMap();
 

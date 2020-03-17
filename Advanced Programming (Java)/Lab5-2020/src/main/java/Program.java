@@ -23,6 +23,9 @@ public class Program {
         }
     }
 
+    /**
+     * Executes a shell command
+     */
     private static boolean executeCommand(Shell shell, Command cmd, String[] cmdArgs) {
         if (cmd == null) {
             System.out.println("Invalid command! Type \"list-cmd\" to see details about the commands!");

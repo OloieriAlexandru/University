@@ -13,7 +13,14 @@ public class ProblemGenerator {
     private static int minimumNumberOfHospitals = 10;
     private static int maximumNumberOfHospitals = 20;
 
-    public static Problem generateProblem(){
+    /**
+     * A static function which generates a random HR problem
+     * The number of residents will be in [6, 12] interval
+     * The number of hospitals will be in [10,20] interval
+     *
+     * @return the random generated problem
+     */
+    public static Problem generateProblem() {
         Faker faker = new Faker();
         Problem randomProblem = new Problem(faker.app().name());
 
@@ -21,12 +28,12 @@ public class ProblemGenerator {
         int hospitalsCount = RandomGenerator.intBetween(minimumNumberOfHospitals, maximumNumberOfHospitals);
 
         Resident[] residents = new Resident[residentsCount];
-        for (int i=0;i<residentsCount;++i){
+        for (int i = 0; i < residentsCount; ++i) {
             residents[i] = new Resident(faker.name().fullName());
         }
 
         Hospital[] hospitals = new Hospital[hospitalsCount];
-        for (int i=0;i<hospitalsCount;++i){
+        for (int i = 0; i < hospitalsCount; ++i) {
             hospitals[i] = new Hospital(faker.name().lastName(), RandomGenerator.intBetween(1, 4));
         }
 
@@ -42,37 +49,53 @@ public class ProblemGenerator {
         return randomProblem;
     }
 
-    private static Map<Resident, List<Hospital>> generateResidentsPreferences(Resident[] residents, Hospital[] hospitals, Faker faker){
+    /**
+     * A function which generates, for each resident, a list of hospitals (his preferences)
+     *
+     * @param residents
+     * @param hospitals
+     * @param faker     an instance of Faker class
+     * @return a Map of type <Resident, Hospitals>
+     */
+    private static Map<Resident, List<Hospital>> generateResidentsPreferences(Resident[] residents, Hospital[] hospitals, Faker faker) {
         Map<Resident, List<Hospital>> residentListMap = new HashMap<>();
 
-        for (int i=0;i<residents.length;++i){
+        for (Resident resident : residents) {
             List<Hospital> thisResidentPreferences = new ArrayList<>();
 
             int hospitalsCount = RandomGenerator.intBetween(1, hospitals.length);
             List<Integer> permutation = RandomGenerator.getPermutationOfKNumbers(hospitalsCount);
-            for (int j=0;j<hospitalsCount;++j){
+            for (int j = 0; j < hospitalsCount; ++j) {
                 thisResidentPreferences.add(hospitals[permutation.get(j)]);
             }
 
-            residentListMap.put(residents[i], thisResidentPreferences);
+            residentListMap.put(resident, thisResidentPreferences);
         }
 
         return residentListMap;
     }
 
-    private static Map<Hospital, List<Resident>> generateHospitalsPreferences(Resident[] residents, Hospital[] hospitals, Faker faker){
+    /**
+     * A function which generates, for each hospital, a list of residents (its preferences)
+     *
+     * @param residents
+     * @param hospitals
+     * @param faker     an instance of Faker class
+     * @return a Map of type <Hospital, Residents>
+     */
+    private static Map<Hospital, List<Resident>> generateHospitalsPreferences(Resident[] residents, Hospital[] hospitals, Faker faker) {
         Map<Hospital, List<Resident>> hospitalListMap = new TreeMap<>();
 
-        for (int i=0;i<hospitals.length;++i){
+        for (Hospital hospital : hospitals) {
             List<Resident> thisHospitalPreferences = new ArrayList<>();
 
             int residentsCount = RandomGenerator.intBetween(1, residents.length);
             List<Integer> permutation = RandomGenerator.getPermutationOfKNumbers(residentsCount);
-            for (int j=0;j<residentsCount;++j){
+            for (int j = 0; j < residentsCount; ++j) {
                 thisHospitalPreferences.add(residents[permutation.get(j)]);
             }
 
-            hospitalListMap.put(hospitals[i], thisHospitalPreferences);
+            hospitalListMap.put(hospital, thisHospitalPreferences);
         }
 
         return hospitalListMap;

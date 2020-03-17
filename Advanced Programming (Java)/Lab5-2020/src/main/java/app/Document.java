@@ -18,6 +18,9 @@ import shell.*;
 import java.io.*;
 import java.util.*;
 
+/**
+ * An abstract class, from which "ExternalDocument" and "FileSystemDocument" classes are derived
+ */
 public abstract class Document implements Serializable {
     private static Shell tagsShell = null;
 
@@ -60,6 +63,9 @@ public abstract class Document implements Serializable {
         return stringBuilder.toString();
     }
 
+    /**
+     * Writes information about this document to the WORD file
+     */
     public void writeToWORD(XWPFDocument document) {
         writeInfoToWORD(document);
         writeTagsInfoToWORD(document);
@@ -89,6 +95,9 @@ public abstract class Document implements Serializable {
         }
     }
 
+    /**
+     * Creates an interactive menu which offers the user the possibility to add/remove tags
+     */
     public void updateTags() {
         System.out.println("File information:\n" + toString());
         Scanner scanner = new Scanner(System.in);
@@ -117,6 +126,10 @@ public abstract class Document implements Serializable {
         return name;
     }
 
+    /**
+     * Optional, first task:
+     * Implement the save and load methods using a plain text representation of the catalog (instead of binary serialization).
+     */
     public static Document readFromFile(BufferedReader bufferedReader) throws IOException, InvalidCatalogFileException {
         Document document = readDocumentFromFile(bufferedReader);
         String line = bufferedReader.readLine();
@@ -129,6 +142,9 @@ public abstract class Document implements Serializable {
         return document;
     }
 
+    /**
+     * Creates a map which will be used by Velocity library for creating the HTML document
+     */
     public Map getAsMap() {
         Map result = new HashMap();
 
@@ -149,6 +165,10 @@ public abstract class Document implements Serializable {
 
     protected abstract String getSpecificDocumentInfo(boolean full);
 
+    /**
+     * Bonus, first task
+     * The function prints to stdout metadata about the file (if it is a instance of FileSystemDocument class)
+     */
     public void printInfo() {
         String path = getSpecificDocumentInfo(false);
 
@@ -169,6 +189,10 @@ public abstract class Document implements Serializable {
         }
     }
 
+    /**
+     * Optional, first task:
+     * Implement the save and load methods using a plain text representation of the catalog (instead of binary serialization).
+     */
     private static Document readDocumentFromFile(BufferedReader bufferedReader) throws IOException, InvalidCatalogFileException {
         String typeString = bufferedReader.readLine();
         Helper.checkNull(typeString);
@@ -189,6 +213,10 @@ public abstract class Document implements Serializable {
         return document;
     }
 
+    /**
+     * Optional, first task:
+     * Implement the save and load methods using a plain text representation of the catalog (instead of binary serialization).
+     */
     protected void writeCommonInfoToFile(PrintWriter printWriter) {
         printWriter.println(id);
         printWriter.println(name);
@@ -198,6 +226,9 @@ public abstract class Document implements Serializable {
         }
     }
 
+    /**
+     * Executes document tags related commands
+     */
     private boolean executeCommand(Command cmd, String[] cmdArgs) {
         if (cmd == null) {
             System.out.println("Invalid command! Type \"list-cmd\" to see details about the commands!");

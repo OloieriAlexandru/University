@@ -37,6 +37,10 @@ public class Catalog implements Serializable {
         documents.add(document);
     }
 
+    /**
+     * Compulsory, second task, third bullet:
+     * view: opens a document using the native operating system application (see the Desktop class);
+     */
     public void openDocument(String documentName) throws InvalidDocumentNameException {
         for (int i = 0; i < documents.size(); ++i) {
             if (documents.get(i).getName().equals(documentName)) {
@@ -47,6 +51,9 @@ public class Catalog implements Serializable {
         throw new InvalidDocumentNameException();
     }
 
+    /**
+     * A function which opens the interactive menu for adding/ removing tags from a document
+     */
     public void updateDocumentTags(String documentName) throws InvalidDocumentNameException {
         for (Document document : documents) {
             if (document.getName().equals(documentName)) {
@@ -61,6 +68,10 @@ public class Catalog implements Serializable {
         return documentId++;
     }
 
+    /**
+     * Optional, first task:
+     * Implement the save and load methods using a plain text representation of the catalog (instead of binary serialization).
+     */
     public boolean writeToFile(String fileName) {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
@@ -80,6 +91,10 @@ public class Catalog implements Serializable {
         return true;
     }
 
+    /**
+     * Optional, first task:
+     * Implement the save and load methods using a plain text representation of the catalog (instead of binary serialization).
+     */
     public static Catalog readFromFile(String fileName) throws InvalidCatalogFileException, DuplicateDocumentException {
         Catalog catalog = null;
         try {
@@ -102,6 +117,10 @@ public class Catalog implements Serializable {
         return catalog;
     }
 
+    /**
+     * Compulsory, second task, first bullet:
+     * save: saves the catalog to an external file, using object serialization;
+     */
     public boolean serialize(String fileName) {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
@@ -118,6 +137,10 @@ public class Catalog implements Serializable {
         return true;
     }
 
+    /**
+     * Compulsory, second task, first bullet:
+     * save: saves the catalog to an external file, using object serialization;
+     */
     public static Catalog deserialize(String fileName) {
         Catalog catalog = null;
         try {
@@ -134,12 +157,21 @@ public class Catalog implements Serializable {
         return catalog;
     }
 
+    /**
+     * Bonus, second task, first bullet:
+     * A template engine such as FreeMarker or Velocity, in order to create an HTML report.
+     *
+     * @return the name of the HTML report
+     */
     public String reportHTML() {
         StringWriter writer = getHTMLReportWriter();
 
         return writeHTMLReportToFile(writer);
     }
 
+    /**
+     * Loads the HTML template and creates the HTML files
+     */
     private StringWriter getHTMLReportWriter() {
         VelocityEngine ve = new VelocityEngine();
         ve.setProperty("runtime.log.logsystem.class", NullLogChute.class.getName());
@@ -153,6 +185,10 @@ public class Catalog implements Serializable {
         return writer;
     }
 
+    /**
+     * Bonus, second task, first bullet
+     * Creates the HTML report file
+     */
     private String writeHTMLReportToFile(StringWriter writer) {
         String fileName = name + ".html";
         try {
@@ -169,6 +205,9 @@ public class Catalog implements Serializable {
         return fileName;
     }
 
+    /**
+     * Creates a Velocity library related object
+     */
     private VelocityContext getVelocityContext() {
         VelocityContext context = new VelocityContext();
 
@@ -185,6 +224,12 @@ public class Catalog implements Serializable {
         return context;
     }
 
+    /**
+     * Bonus, second task, second bullet:
+     * A report designer such as Dynamic Reports, in order to create PDF reports.
+     *
+     * @return the name of the PDF report
+     */
     public String reportPDF() {
         StringWriter htmlWriter = getHTMLReportWriter();
         String fileName = name + ".pdf";
@@ -204,6 +249,12 @@ public class Catalog implements Serializable {
         return fileName;
     }
 
+    /**
+     * Bonus, second task, third bullet:
+     * Apache POI in order to create Microsoft Documents (Word, Excel, etc).
+     *
+     * @return the name of the WORD report
+     */
     public String reportWORD() {
         String fileName = name + ".doc";
         XWPFDocument document = new XWPFDocument();
@@ -250,6 +301,10 @@ public class Catalog implements Serializable {
         subTitleRun.setFontSize(18);
     }
 
+    /**
+     * Bonus, first task
+     * info: display the metadata of a specific file: (you may want to use Apache Tika or something similar).
+     */
     public void printDocumentInfo(String documentName) throws InvalidDocumentNameException {
         for (Document document : documents) {
             if (document.getName().equals(documentName)) {

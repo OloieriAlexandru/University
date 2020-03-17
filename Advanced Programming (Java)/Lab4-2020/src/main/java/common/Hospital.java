@@ -2,11 +2,11 @@ package common;
 
 import java.util.Objects;
 
-public class Hospital implements Comparable{
+public class Hospital implements Comparable {
     private String name;
     private int capacity;
 
-    public Hospital(String name, int capacity){
+    public Hospital(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
     }
@@ -21,10 +21,10 @@ public class Hospital implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        if (!(o instanceof Hospital)){
+        if (!(o instanceof Hospital)) {
             return 1;
         }
-        Hospital other = (Hospital)o;
+        Hospital other = (Hospital) o;
         return getName().compareTo(other.getName());
     }
 

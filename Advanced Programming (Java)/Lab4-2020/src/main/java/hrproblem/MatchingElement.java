@@ -7,7 +7,7 @@ public class MatchingElement {
     private Resident resident;
     private Hospital hospital;
 
-    public MatchingElement(Resident resident, Hospital hospital){
+    public MatchingElement(Resident resident, Hospital hospital) {
         this.resident = resident;
         this.hospital = hospital;
     }

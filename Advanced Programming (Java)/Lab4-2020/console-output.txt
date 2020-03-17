@@ -1,0 +1,290 @@
+All the residents, sorted lexicographically by their name:
+Resident{name='R0'}
+Resident{name='R1'}
+Resident{name='R2'}
+Resident{name='R3'}
+All the hospitals:
+Hospital{name='H0'}
+Hospital{name='H1'}
+Hospital{name='H2'}
+Residents preferences:
+R3: (H0, H2)
+R0: (H0, H1, H2)
+R1: (H0, H1, H2)
+R2: (H0, H1)
+Hospitals preferences:
+H0: (R3, R0, R1, R2)
+H1: (R0, R2, R1)
+H2: (R0, R1, R3)
+Residents who find acceptable H0 and H2:
+R0
+R1
+R3
+Hospitals that have R0 as their top preference:
+H1
+H2
+Matching for "HR Statement Problem" problem
+1. R3 - H0
+2. R2 - H1
+3. R0 - H1
+4. R1 - H2
+Stable matching? yes
+
+Matching to the random problem 1:
+Matching for "Zaam-Dox" problem
+1. Euna White - Anderson
+2. Mr. Blondell Keeling - Crona
+3. Milford Klocko - O'Hara
+4. Faustina Price PhD - Anderson
+5. Janiece Volkman - Sauer
+6. Scot Mitchell - Lehner
+7. Margarett Kozey - Anderson
+8. Etta Mitchell - Casper
+9. Tenesha Aufderhar - Anderson
+10. Bryon Durgan - O'Hara
+11. Gerry Watsica DVM - Crona
+Stable matching? no
+Stable matching for "Zaam-Dox" problem
+1. Euna White - Anderson
+2. Faustina Price PhD - Anderson
+3. Gerry Watsica DVM - Anderson
+4. Tenesha Aufderhar - Anderson
+5. Janiece Volkman - Sauer
+6. Milford Klocko - O'Hara
+7. Bryon Durgan - O'Hara
+8. Etta Mitchell - Casper
+9. Scot Mitchell - Lehner
+10. Mr. Blondell Keeling - Crona
+Stable matching? yes
+
+Matching to the random problem 2:
+Matching for "Veribet" problem
+1. Refugia Koepp - Roberts
+2. Gerardo Sanford - Lakin
+3. Loria Schneider - Waters
+4. Miquel Jacobson - Klein
+5. Mary Ullrich - Miller
+6. Melvin Bernier - Jacobson
+7. Thomas Blick - Jacobson
+8. Lurlene Conn - Waters
+Stable matching? yes
+Stable matching for "Veribet" problem
+1. Melvin Bernier - Jacobson
+2. Thomas Blick - Jacobson
+3. Refugia Koepp - Roberts
+4. Loria Schneider - Waters
+5. Lurlene Conn - Waters
+6. Mary Ullrich - Miller
+7. Gerardo Sanford - Lakin
+8. Miquel Jacobson - Klein
+Stable matching? yes
+
+Matching to the random problem 3:
+Matching for "Home Ing" problem
+1. Miss Elias Mann - Botsford
+2. Rosetta Kozey - Altenwerth
+3. Armida Runte - Altenwerth
+4. Ms. Adalberto Hodkiewicz - McKenzie
+5. Hellen Senger - McKenzie
+6. Katlyn Marvin - Larson
+7. Tobias Carter V - Jacobson
+8. Mariel McKenzie - Altenwerth
+9. Deanna Gerlach V - Larson
+10. Jewell Flatley - Windler
+11. Stephane West DDS - Bogisich
+12. Lincoln Beer - Larson
+Stable matching? yes
+Stable matching for "Home Ing" problem
+1. Katlyn Marvin - Larson
+2. Deanna Gerlach V - Larson
+3. Stephane West DDS - Larson
+4. Rosetta Kozey - Altenwerth
+5. Armida Runte - Altenwerth
+6. Jewell Flatley - Altenwerth
+7. Tobias Carter V - Windler
+8. Mariel McKenzie - Bogisich
+9. Ms. Adalberto Hodkiewicz - McKenzie
+10. Hellen Senger - McKenzie
+11. Miss Elias Mann - Botsford
+Stable matching? yes
+
+Matching to the random problem 4:
+Matching for "Gembucket" problem
+1. Rene Feil III - Metz
+2. Freeman Murazik - Blick
+3. Florance VonRueden - Metz
+4. Miss Ervin Rice - Kuphal
+5. Robt DuBuque II - Marks
+6. Ms. Miyoko Lind - Blick
+7. Numbers Kris - Pouros
+8. Dr. Elton Spencer - Kuphal
+9. Michelle Dooley - Pouros
+10. Herschel Kunde - Huel
+Stable matching? yes
+Stable matching for "Gembucket" problem
+1. Freeman Murazik - Blick
+2. Ms. Miyoko Lind - Blick
+3. Numbers Kris - Pouros
+4. Michelle Dooley - Pouros
+5. Herschel Kunde - Huel
+6. Miss Ervin Rice - Kuphal
+7. Dr. Elton Spencer - Kuphal
+8. Robt DuBuque II - Marks
+9. Rene Feil III - Metz
+10. Florance VonRueden - Metz
+Stable matching? yes
+
+Matching to the random problem 5:
+Matching for "Bigtax" problem
+1. Mrs. Classie Kassulke - Ernser
+2. Bert Kirlin - Swaniawski
+3. Alma Schoen - Zieme
+4. Pamula Bode - Wuckert
+5. Jill Nitzsche - Kuhn
+6. Karri McDermott - Leannon
+7. Edmund Bechtelar - Leannon
+8. Theodore Brekke - Wuckert
+9. Teodoro VonRueden - Leannon
+10. Johnnie Bruen - Erdman
+Stable matching? yes
+Stable matching for "Bigtax" problem
+1. Pamula Bode - Wuckert
+2. Theodore Brekke - Wuckert
+3. Karri McDermott - Leannon
+4. Edmund Bechtelar - Leannon
+5. Teodoro VonRueden - Leannon
+6. Jill Nitzsche - Kuhn
+7. Mrs. Classie Kassulke - Ernser
+8. Alma Schoen - Zieme
+9. Bert Kirlin - Swaniawski
+10. Johnnie Bruen - Erdman
+Stable matching? yes
+
+Matching to the random problem 6:
+Matching for "Home Ing" problem
+1. Ms. Donovan Gleichner - Jast
+2. Kathern Connelly - Labadie
+3. Kristle Wisoky - Cartwright
+4. May Upton - Dach
+5. Miss Marcel Hermiston - Jast
+6. Lonnie Abernathy - Nikolaus
+7. Wendolyn Upton - Barton
+8. Miss Linnie Huels - Labadie
+9. Lynetta Mosciski - D'Amore
+Stable matching? yes
+Stable matching for "Home Ing" problem
+1. Lynetta Mosciski - D'Amore
+2. Wendolyn Upton - Barton
+3. May Upton - Dach
+4. Kristle Wisoky - Cartwright
+5. Ms. Donovan Gleichner - Jast
+6. Miss Marcel Hermiston - Jast
+7. Kathern Connelly - Labadie
+8. Miss Linnie Huels - Labadie
+9. Lonnie Abernathy - Nikolaus
+Stable matching? yes
+
+Matching to the random problem 7:
+Matching for "Zathin" problem
+1. Tyron DuBuque - Wunsch
+2. Mike Ondricka - Langworth
+3. Ambrose Green - Bailey
+4. Arnulfo Kihn - Bergstrom
+5. Mr. Kittie Jones - Bosco
+6. Mike Hickle - Bosco
+7. Merlene Feeney - Luettgen
+8. Edgardo Rogahn - Sipes
+9. Archie Rohan Jr. - Sipes
+10. Roberto Daugherty - Luettgen
+Stable matching? no
+Stable matching for "Zathin" problem
+1. Mike Ondricka - Bailey
+2. Tyron DuBuque - Wunsch
+3. Mr. Kittie Jones - Bosco
+4. Mike Hickle - Bosco
+5. Edgardo Rogahn - Sipes
+6. Archie Rohan Jr. - Sipes
+7. Arnulfo Kihn - Bergstrom
+8. Merlene Feeney - Luettgen
+9. Roberto Daugherty - Luettgen
+Stable matching? yes
+
+Matching to the random problem 8:
+Matching for "Home Ing" problem
+1. Quinn VonRueden - Hodkiewicz
+2. Brynn Stoltenberg - Pagac
+3. Eneida Beier - Wunsch
+4. Randolph Langosh - Little
+5. Edmund Lynch - Trantow
+6. Richard Abernathy - Trantow
+7. Mr. Ralph Reilly - Walker
+8. Vania Herzog - Russel
+9. Gary Berge - Walker
+Stable matching? yes
+Stable matching for "Home Ing" problem
+1. Rachael O'Conner - Trantow
+2. Richard Abernathy - Trantow
+3. Quinn VonRueden - Hodkiewicz
+4. Vania Herzog - Russel
+5. Mr. Ralph Reilly - Walker
+6. Gary Berge - Walker
+7. Brynn Stoltenberg - Pagac
+8. Eneida Beier - Wunsch
+9. Randolph Langosh - Little
+Stable matching? yes
+
+Matching to the random problem 9:
+Matching for "Stronghold" problem
+1. Morton Krajcik - Wunsch
+2. Alida Stehr - Mitchell
+3. Alfred Halvorson - Cassin
+4. Maragret Medhurst - Cassin
+5. Brooke Hilpert - Wunsch
+6. Dr. Lupita Baumbach - Doyle
+7. Jacque Torp - Mitchell
+8. Ms. Rashad Breitenberg - Doyle
+9. Joette Carter - Mitchell
+10. Samual Bins - Doyle
+Stable matching? yes
+Stable matching for "Stronghold" problem
+1. Dr. Lupita Baumbach - Doyle
+2. Ms. Rashad Breitenberg - Doyle
+3. Samual Bins - Doyle
+4. Alida Stehr - Mitchell
+5. Jacque Torp - Mitchell
+6. Joette Carter - Mitchell
+7. Morton Krajcik - Wunsch
+8. Brooke Hilpert - Wunsch
+9. Alfred Halvorson - Cassin
+10. Maragret Medhurst - Cassin
+Stable matching? yes
+
+Matching to the random problem 10:
+Matching for "Matsoft" problem
+1. Mrs. Morton Ziemann - Wyman
+2. Mrs. Roberto Pfannerstill - Treutel
+3. Alfred Dooley - Wyman
+4. Jeanne Medhurst - Veum
+5. King Mosciski II - Wyman
+6. Mrs. Rupert Swaniawski - Zieme
+7. Slyvia Zboncak - Lebsack
+8. Viva Frami - Abbott
+9. Sheldon Veum - Stamm
+10. Catina Ernser I - Lebsack
+11. Brice Tromp - Labadie
+12. Julee Leffler Jr. - Zieme
+Stable matching? yes
+Stable matching for "Matsoft" problem
+1. Mrs. Morton Ziemann - Wyman
+2. Alfred Dooley - Wyman
+3. King Mosciski II - Wyman
+4. Brice Tromp - Labadie
+5. Viva Frami - Abbott
+6. Jeanne Medhurst - Veum
+7. Slyvia Zboncak - Lebsack
+8. Catina Ernser I - Lebsack
+9. Mrs. Roberto Pfannerstill - Treutel
+10. Mrs. Rupert Swaniawski - Zieme
+11. Julee Leffler Jr. - Zieme
+12. Sheldon Veum - Stamm
+Stable matching? yes

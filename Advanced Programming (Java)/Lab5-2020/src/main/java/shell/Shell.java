@@ -8,6 +8,9 @@ import java.util.List;
 public class Shell {
     private List<Command> commands = new ArrayList<>();
 
+    /**
+     * Returns the command that has to be executed
+     */
     public Command getCommand(String cmd) {
         if (Helper.stringIsUInt(cmd)) {
             int idx = Integer.parseInt(cmd) - 1;

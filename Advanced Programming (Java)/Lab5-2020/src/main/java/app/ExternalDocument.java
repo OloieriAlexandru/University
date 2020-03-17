@@ -38,7 +38,7 @@ public class ExternalDocument extends Document implements Serializable {
 
     @Override
     protected String getSpecificDocumentInfo(boolean full) {
-        if (full){
+        if (full) {
             return "Url: " + url;
         }
         return url;

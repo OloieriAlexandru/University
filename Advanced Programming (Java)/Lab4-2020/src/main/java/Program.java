@@ -51,21 +51,30 @@ public class Program {
         statementProblem.setHospitalPreferences(hospitalListMap);
         // Implement an algorithm for creating a matching.
         Matching matching = statementProblem.getMatching();
-        System.out.print(matching);
+        System.out.println(matching);
         // Verify if the matching produced by your algorithm is stable.
         System.out.println("Stable matching? " + (matching.isStable() ? "yes" : "no"));
         // Use a third-party library in order to generate random fake names for residents and hospitals. Create random instances and test your algorithm.
-        for (int i=1;i<=10;++i){
+        for (int i = 1; i <= 10; ++i) {
             System.out.println();
             Problem generatedProblem = ProblemGenerator.generateProblem();
             Matching generatedProblemMatching = generatedProblem.getMatching();
             System.out.println("Matching to the random problem " + i + ":");
             System.out.println(generatedProblemMatching);
             System.out.println("Stable matching? " + (generatedProblemMatching.isStable() ? "yes" : "no"));
+
+            // Bonus
+            // Implement the Gale Shapley algorithm in order to find a stable matching.
+            Matching galeShapleyMatching = generatedProblem.getStableMatching();
+            System.out.println(galeShapleyMatching);
+            System.out.println("Stable matching? " + (galeShapleyMatching.isStable() ? "yes" : "no"));
         }
     }
 
-    private static List<Resident> getSortedListOfResidents(Resident r0, Resident r1, Resident r2, Resident r3){
+    /**
+     * Compulsory, 3rd task
+     */
+    private static List<Resident> getSortedListOfResidents(Resident r0, Resident r1, Resident r2, Resident r3) {
         List<Resident> residents = new ArrayList<>();
         residents.add(r2);
         residents.add(r1);
@@ -79,7 +88,10 @@ public class Program {
         return residents;
     }
 
-    private static Set<Hospital> getHospitalSet(Hospital h0, Hospital h1, Hospital h2){
+    /**
+     * Compulsory, 4th task
+     */
+    private static Set<Hospital> getHospitalSet(Hospital h0, Hospital h1, Hospital h2) {
         Set<Hospital> hospitalSet = new TreeSet<>();
         hospitalSet.add(h0);
         hospitalSet.add(h1);
@@ -88,9 +100,12 @@ public class Program {
         for (Hospital hospital : hospitalSet) {
             System.out.println(hospital);
         }
-        return  hospitalSet;
+        return hospitalSet;
     }
 
+    /**
+     * Compulsory, 5th task
+     */
     private static Map<Resident, List<Hospital>> getResidentsPreferences(Resident r0, Resident r1, Resident r2, Resident r3,
                                                                          Hospital h0, Hospital h1, Hospital h2) {
         Map<Resident, List<Hospital>> residentListMap = new HashMap<>();
@@ -123,8 +138,11 @@ public class Program {
         return residentListMap;
     }
 
+    /**
+     * Compulsory, 5th task
+     */
     private static Map<Hospital, List<Resident>> getHospitalPreferences(Resident r0, Resident r1, Resident r2, Resident r3,
-                                                                        Hospital h0, Hospital h1, Hospital h2){
+                                                                        Hospital h0, Hospital h1, Hospital h2) {
         Map<Hospital, List<Resident>> hospitalListMap = new TreeMap<>();
 
         hospitalListMap.put(h0, new ArrayList<>());

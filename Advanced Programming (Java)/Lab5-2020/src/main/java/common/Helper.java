@@ -17,6 +17,10 @@ public class Helper {
         return true;
     }
 
+    /**
+     * A function used by shells
+     * Reads a line from stdin
+     */
     public static String readLine(Scanner scanner, String message) {
         String line;
         while (true) {
