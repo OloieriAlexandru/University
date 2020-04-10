@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            width: 100%;
+            height: 100vh;
+
+            padding-left: 20px;
+        }
+
+        .artists {
+            margin-top: 12px;
+            margin-left: 16px;
+        }
+    </style>
+    <title>
+        Artists ranking
+    </title>
+</head>
+
+<body>
+    <h1>
+        Artists ranking
+    </h1>
+    <h2>
+        $artists.size() artists
+    </h2>
+    <div class="artists">
+        <ol>
+            #foreach ( $artist in $artists )
+            <li>
+                $artist.getValue().getName(), points: $artist.getKey()
+            </li>
+            #end
+        </ol>
+    </div>
+</body>
+
+</html>
