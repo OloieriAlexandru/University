@@ -18,6 +18,11 @@ public class ComponentPropertiesPanel extends JScrollPane {
         setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
+    public void clearTable() {
+        propertiesTable = new JTable();
+        setViewportView(propertiesTable);
+    }
+
     public void updateTableProperties(ComponentTableModel newModel) {
         propertiesTable = new JTable(newModel);
         propertiesTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);

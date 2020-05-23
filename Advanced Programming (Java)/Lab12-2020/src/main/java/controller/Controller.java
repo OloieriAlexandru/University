@@ -1,5 +1,6 @@
 package controller;
 
+import helper.Helper;
 import model.ComponentTableModel;
 import model.ComponentTableRow;
 import model.DynamicJComponent;
@@ -12,13 +13,14 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.File;
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class coordinates all the application logic
@@ -28,6 +30,7 @@ public class Controller implements Serializable {
     private DesignPanel designPanel;
     private ControlPanel controlPanel;
     private ComponentPropertiesPanel componentPropertiesPanel;
+    private DynamicClassloader classloader = new DynamicClassloader();
 
     private Map<JComponent, DynamicJComponent> componentDynamicJComponentMap = new HashMap<>();
 
@@ -57,12 +60,14 @@ public class Controller implements Serializable {
                 Class clazz = Class.forName(componentName);
                 JComponent newComponent = (JComponent) clazz.getConstructor(String.class).newInstance(componentText);
                 newComponent.addMouseListener(dynamicComponentMouseAdapter);
-                DynamicJComponent newJComponent = new DynamicJComponent(newComponent, x, y);
+                DynamicJComponent newJComponent = new DynamicJComponent(newComponent, x, y, false);
                 componentDynamicJComponentMap.put(newComponent, newJComponent);
                 designPanel.addComponent(newJComponent);
                 designPanel.paintAllComponents();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException evt) {
-                System.err.println(evt);
+                if (!tryToLoadDynamicClass(x, y, componentName, componentText)) {
+                    System.err.println(evt);
+                }
             }
         }
     };
@@ -82,7 +87,21 @@ public class Controller implements Serializable {
      * The function which opens the UI
      */
     public void openApp() {
+        Scanner scanner = new Scanner(System.in);
         mainFrame.open();
+        while (true) {
+            String line = Helper.readLine(scanner, "jar path: ");
+            File path = new File(line);
+            if (path.exists()) {
+                URL url = null;
+                try {
+                    url = path.toURI().toURL();
+                    classloader.addURL(url);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**
@@ -104,6 +123,8 @@ public class Controller implements Serializable {
                 designPanel = desPanel;
                 mainFrame.setDesignPanel(designPanel);
                 designPanel.paintAllComponents();
+                designPanel.addMouseListener(designPanelMouseAdapter);
+                componentDynamicJComponentMap.clear();
             } else {
                 System.out.println("ERROR");
             }
@@ -132,6 +153,7 @@ public class Controller implements Serializable {
      */
     public void reset() {
         designPanel.clearAndPaint();
+        componentDynamicJComponentMap.clear();
     }
 
     /**
@@ -161,5 +183,46 @@ public class Controller implements Serializable {
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Tries to load a class from an external JAR using the dynamic class loader
+     * Also, checks whether the class has annotations and if it does, applies those properties
+     */
+    private boolean tryToLoadDynamicClass(int x, int y, String componentName, String componentText) {
+        Class clazz = null;
+        try {
+            clazz = classloader.loadClass(componentName);
+
+            int width = 112, height = 112;
+            String widthAnnotationStart = "@annotations.Width\\(";
+            String heightAnnotationStart = "@annotations.Height\\(";
+            String textAnnotationStart = "@annotations.Text\\(\"";
+
+            for (Annotation annotation : clazz.getAnnotations()) {
+                String annotationText = annotation.toString();
+                if (annotationText.startsWith("@annotations.Width(")) {
+                    width = Integer.parseInt(annotationText.split(widthAnnotationStart)[1].split("\\)")[0]);
+                } else if (annotationText.startsWith("@annotations.Height(")) {
+                    height = Integer.parseInt(annotationText.split(heightAnnotationStart)[1].split("\\)")[0]);
+                } else if (annotationText.startsWith("@annotations.Text(\"")) {
+                    if (componentText.length() == 0) {
+                        componentText = annotationText.split(textAnnotationStart)[1].split("\"\\)")[0];
+                    }
+                }
+            }
+            JComponent newComponent = (JComponent) clazz.getConstructor(String.class).newInstance(componentText);
+            newComponent.setBounds(x, y, width, height);
+            newComponent.addMouseListener(dynamicComponentMouseAdapter);
+
+            DynamicJComponent newJComponent = new DynamicJComponent(newComponent, x, y, true);
+            componentDynamicJComponentMap.put(newComponent, newJComponent);
+            designPanel.addComponent(newJComponent);
+            designPanel.paintAllComponents();
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

@@ -16,14 +16,16 @@ public class DynamicJComponent implements Serializable {
     private JComponent component;
     private int x;
     private int y;
+    private boolean custom;
 
     public DynamicJComponent() {
     }
 
-    public DynamicJComponent(JComponent component, int x, int y) {
+    public DynamicJComponent(JComponent component, int x, int y, boolean custom) {
         this.component = component;
         this.x = x;
         this.y = y;
+        this.custom = custom;
     }
 
     public int getY() {
@@ -74,5 +76,15 @@ public class DynamicJComponent implements Serializable {
         } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+
+        if (fieldName.equals("x")){
+            setX(Integer.parseInt((String) value));
+        } else if (fieldName.equals("y")){
+            setY(Integer.parseInt((String) value));
+        }
+    }
+
+    public boolean isCustom() {
+        return custom;
     }
 }

@@ -69,7 +69,9 @@ public class DesignPanel extends JPanel implements Serializable {
             JComponent paintedComponent = component.getComponent();
             int x = component.getX();
             int y = component.getY();
-            paintedComponent.setBounds(x - width / 2, y - height / 2, width, height);
+            if (!component.isCustom()){
+                paintedComponent.setBounds(x - width / 2, y - height / 2, width, height);
+            }
             add(paintedComponent);
         }
 
