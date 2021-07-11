@@ -1,0 +1,25 @@
+
+Autor: Oloieri Alexandru
+Detalii despre proiect:
+
+Proiectul a fost scris in C++
+
+- Serverul Key Manager este un server UDP iterativ
+- Nodul A si B au fost implementati in cadrul unui singur executabil (se ruleaza un executabil iar apoi pot fi folosite diferite comenzi pentru trimiterea unui fisier altui nod)
+- Modurile de operare ECB si CFB au fost implementate in cadrul temei. Pentru criptarea blocurilor de 128 de biti am folosit libraria OpenSSL pentru C++
+
+Mod de utilizare:
+- make pentru compilare (vor fi create 2 executabile: node_manager.bin si node_normal.bin), apoi:
+- make runmanager (pentru lansarea key managerului)
+- make runnormal (pentru lansarea nodului normal). Va trebui precizat un port pentru acest nod
+
+Nodul normal pune la dispozitie urmatoarele comenzi:
+1. send (fileName) -ip:(peerIp) -port:(peerPort) -mode:(ecb/cfb), de exemplu
+    send file.txt -ip:127.0.0.1 -port:10001 -mode:ecb (va trimite fisierul file.txt nodului ce asculta pe masina 127.0.0.1 la portul 10001, modul de utilizare folosit
+    fiind ecb)
+2. list-cmd - va afisa comenzile
+3. print-k3 - va afisa cheia k3 (comuna atat nodurilor normale cat si lui KM)
+4. print-iv - va afisa iv
+5. close (opreste aplicatia)
+
+In unele fisiere au fost adaugate comentarii la inceput unde am precizat documentatia pe care-am folosit-o pt implementarea unor functionalitati din acel fisier
