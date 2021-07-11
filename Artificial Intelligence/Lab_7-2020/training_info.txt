@@ -1,0 +1,6 @@
+Function
+0 0 0 1
+Learning rate
+10.0
+Max Error
+0.000001
