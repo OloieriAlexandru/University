@@ -1,0 +1,17 @@
+{
+  "name": "h1-server",
+  "version": "1.0.0",
+  "description": "A server for the first homework of the Cloud Computing Uni course",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.json"
+  },
+  "author": "Oloieri Alexandru",
+  "license": "ISC",
+  "dependencies": {
+    "follow-redirects": "^1.13.2",
+    "nodemon": "^2.0.7",
+    "request": "^2.88.2"
+  }
+}

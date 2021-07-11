@@ -1,0 +1,1040 @@
+{
+	"info": {
+		"_postman_id": "9b834837-c7d7-4d89-bcbc-3ab6b78339a5",
+		"name": "Cloud H2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users Requests",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"alexoloieri\",\r\n    \"password\": \"parola123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"alexoloieri-forbidden\",\r\n    \"password\": \"parola123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/users/login-token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users",
+								"login-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3YjE2YTg5MTg5YjZiOWM1YzM3ODUiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpIiwiaWF0IjoxNjE1MzExMjUzLCJleHAiOjE2NDY4NDcyNTN9.SNWio1h0btPdrbWQmczubLDwpmmotBssgiPgYihUuho",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/users/6047b16a89189b6b9c5c3785",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users",
+								"6047b16a89189b6b9c5c3785"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Unauthorized",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YThjNzk4MDY5MTMxM2NmMmY0OGMiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLXRvLWRlbCIsImlhdCI6MTYxNTI0MzU1MSwiZXhwIjoxNjQ2Nzc5NTUxfQ.7scIxRWFQWI2VhPj3OKj9QzsTNUEEl1FqvOPlzHeOsM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/users/6046b275279bfc1fc069611d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users",
+								"6046b275279bfc1fc069611d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Forbidden",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YThjNzk4MDY5MTMxM2NmMmY0OGMiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLXRvLWRlbCIsImlhdCI6MTYxNTI0MzU1MSwiZXhwIjoxNjQ2Nzc5NTUxfQ.7scIxRWFQWI2VhPj3OKj9QzsTNUEEl1FqvOPlzHeOsM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/users/6047b16a89189b6b9c5c3785",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users",
+								"6047b16a89189b6b9c5c3785"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Invalid Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YThjNzk4MDY5MTMxM2NmMmY0OGMiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLXRvLWRlbCIsImlhdCI6MTYxNTI0MzU1MSwiZXhwIjoxNjQ2Nzc5NTUxfQ.7scIxRWFQWI2VhPj3OKj9QzsTNUEEl1FqvOPlzHeOsM"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/users/6046a8c7980691313cf2f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users",
+								"6046a8c7980691313cf2f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Invalid Credentials",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"a\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts Requests",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id - Not Found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"A post created today - with comments\",\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create on Id - Not allowed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"A random post\",\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Invalid body",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTMxMTgzMywiZXhwIjoxNjQ2ODQ3ODMzfQ.C9aKgd2KPOJtf6fR3Zoljo4ZF7Zgk4N7Iwr0thZiN68"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Forbidden",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3YjY5NzI5NzljMjMyOTRmNjYyYTAiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWZvcmJpZGRlbiIsImlhdCI6MTYxNTMxMjU0NSwiZXhwIjoxNjQ2ODQ4NTQ1fQ.NrAlKgrizmQErtNaRXDlTn8VrKiMv8Ff75ORZVUNRgA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6046aae76a68194c8cd7eb71\",\r\n    \"title\": \"A random updated post\",\r\n    \"content\": \"-----------------Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Invalid Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTMxMTgzMywiZXhwIjoxNjQ2ODQ3ODMzfQ.C9aKgd2KPOJtf6fR3Zoljo4ZF7Zgk4N7Iwr0thZiN68",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6044c69db50cb52d5016a512\",\r\n    \"title\": \"A random updated post\",\r\n    \"content\": \"-----------------Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6044c69db50cb52d5016a512",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6044c69db50cb52d5016a512"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6046aae76a68194c8cd7eb71\",\r\n    \"title\": \"A random updated post dasd\",\r\n    \"content\": \"----Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh dolor, hendrerit bibendum tellus a, fermentum sodales lacus. Aliquam consequat, est sed ultrices posuere, nulla enim facilisis ex, ac mattis mi nibh nec enim. Pellentesque ut tincidunt arcu. Vestibulum sollicitudin nibh purus, nec lobortis nisl viverra vel. Proin tristique vestibulum dui a faucibus. Praesent commodo cursus risus, ac lacinia ex interdum eget. Vestibulum in cursus quam. Ut a cursus ligula. Nunc tristique augue id nisl semper varius.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb71"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Forbidden",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ3YjY5NzI5NzljMjMyOTRmNjYyYTAiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWZvcmJpZGRlbiIsImlhdCI6MTYxNTMxMjU0NSwiZXhwIjoxNjQ2ODQ4NTQ1fQ.NrAlKgrizmQErtNaRXDlTn8VrKiMv8Ff75ORZVUNRgA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Invalid Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTMxMTgzMywiZXhwIjoxNjQ2ODQ3ODMzfQ.C9aKgd2KPOJtf6fR3Zoljo4ZF7Zgk4N7Iwr0thZiN68",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6044c69db50cb52d5016a512",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6044c69db50cb52d5016a512"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b995fd712a1c04ac6027",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b995fd712a1c04ac6027"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch - Not Implemented",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aae76a68194c8cd7eb71",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aae76a68194c8cd7eb71"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments Requests",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Comment 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create - Unauthorized",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"Comment 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Unauthorized",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6046ae555223375ff4065df7\",\r\n    \"content\": \"updated Comment\",\r\n    \"userId\": \"6046a877980691313cf2f48b\",\r\n    \"postId\": \"6046a877980691313cf2f48b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments/6046ae555223375ff4065df7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments",
+								"6046ae555223375ff4065df7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update - Invalid user Id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6046ae555223375ff4065df7\",\r\n    \"content\": \"updated Comment\",\r\n    \"postId\": \"6046ae555223375ff4065df7\",\r\n    \"userId\": \"invalid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments/6046ae555223375ff4065df7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments",
+								"6046ae555223375ff4065df7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6046ae555223375ff4065df7\",\r\n    \"content\": \"Comment to be updated\",\r\n    \"userId\": \"6046a877980691313cf2f48b\",\r\n    \"postId\": \"6046aacd6a68194c8cd7eb70\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments/6046ae555223375ff4065df7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments",
+								"6046ae555223375ff4065df7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Collection",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\r\n    \"_id\": \"6046ae555223375ff4065d0a\",\r\n    \"content\": \"Comment to be updated\",\r\n    \"userId\": \"6046a877980691313cf2f48b\",\r\n    \"postId\": \"6046aacd6a68194c8cd7eb70\"\r\n},\r\n{\r\n    \"_id\": \"6046ae555223375ff4065d0b\",\r\n    \"content\": \"Comment to be updated\",\r\n    \"userId\": \"6046a877980691313cf2f48b\",\r\n    \"postId\": \"6046aacd6a68194c8cd7eb70\"\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments/6047bc3ad517dc27eceeebdd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments",
+								"6047bc3ad517dc27eceeebdd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Collection",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6047b871fd712a1c04ac601f/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6047b871fd712a1c04ac601f",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Invalid id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YTg3Nzk4MDY5MTMxM2NmMmY0OGIiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLWp3dCIsImlhdCI6MTYxNTI0MzQyMywiZXhwIjoxNjQ2Nzc5NDIzfQ.OVnMmKu_Gbdaqtbt8cF1UPOy-PPljWbpNvjfbL3kXYk"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments/6046b0cc279bfc1fc069611",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments",
+								"6046b0cc279bfc1fc069611"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete - Unauthorized",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ2YjI3NTI3OWJmYzFmYzA2OTYxMWQiLCJ1c2VybmFtZSI6ImFsZXhvbG9pZXJpLXRlc3N0IiwiaWF0IjoxNjE1MjQ1OTUyLCJleHAiOjE2NDY3ODE5NTJ9.lpHtcOs4dMvJD5qvJ1m8rtcvtQjm9IMjeQaILgDcFYw"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8002/api/posts/6046aacd6a68194c8cd7eb70/comments/6046b0cf279bfc1fc0696118",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8002",
+							"path": [
+								"api",
+								"posts",
+								"6046aacd6a68194c8cd7eb70",
+								"comments",
+								"6046b0cf279bfc1fc0696118"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "General - Invalid route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8002/api/invalid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"invalid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "General - Invalid content type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "asdasd",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8002/api/posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

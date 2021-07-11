@@ -1,0 +1,26 @@
+.image-container-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("/assets/auth-page-white.svg");
+
+  height: 100%;
+  width: 100%;
+
+  color: #FFF;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}

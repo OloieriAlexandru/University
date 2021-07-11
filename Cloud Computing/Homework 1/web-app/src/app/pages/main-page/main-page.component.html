@@ -1,0 +1,52 @@
+<div class="wrapper">
+
+  <div class="title">
+    Random dog image facts generator
+  </div>
+
+  <div class="component-containers">
+    <div class="component-container">
+      <app-container-image [imageToDisplay]="randomImageUrl"></app-container-image>
+      <div class="button-container">
+        <button (click)="getRandomImage()">
+          Generate random image
+        </button>
+      </div>
+    </div>
+
+    <div class="symbol-container">
+      +
+    </div>
+
+    <div class="component-container">
+      <app-container-text [textToDisplay]="randomFact"></app-container-text>
+      <button (click)="getRandomFact()">
+        Generate random fact
+      </button>
+      <div class="language-input">
+        <select [(ngModel)]="selectedLanguage">
+          <option *ngFor="let languageInfo of languages" [value]="languageInfo.code" >{{languageInfo.display}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="symbol-container">
+      =
+    </div>
+
+    <div class="component-container">
+      <app-container-image [imageToDisplay]="randomFactImageUrl"></app-container-image>
+      <button (click)="getFactImage()">
+        Generate fact image
+      </button>
+    </div>
+
+  </div>
+
+  <div class="message" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div class="message" *ngIf="!errorMessage">
+  </div>
+
+</div>

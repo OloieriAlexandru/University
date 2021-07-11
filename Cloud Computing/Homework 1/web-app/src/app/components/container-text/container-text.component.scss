@@ -1,0 +1,17 @@
+.text-container-wrapper {
+  background-image: url("/assets/auth-page-white.svg");
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  height: 100%;
+  width: 100%;
+
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+}

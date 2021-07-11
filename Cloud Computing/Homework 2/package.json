@@ -1,0 +1,22 @@
+{
+  "name": "cloud-course-h2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cloud",
+    "node",
+    "mongo",
+    "rest"
+  ],
+  "author": "Alexandru Oloieri",
+  "license": "ISC"
+}
